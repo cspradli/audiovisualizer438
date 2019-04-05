@@ -2,16 +2,14 @@
 
 var world = tQuery.createWorld().boilerplate().start();
 
-function initAudio(){
-    var webaudio = new WebAudio();
-    /*
-    var sound = webaudio.createSound().load('audio/africa.mp3', function(sound){
+var webaudio = new WebAudio();
+    
+var sound = webaudio.createSound().load('audio/africa.mp3', function(sound){
         sound.loop(true).play();
-    });*/
-}
+});
+var object = tQuery.createTorus().addTo(world);
 
 function initWorld(){
-    //var object = tQuery.createTorus().addTo(world);
     //world.renderer().setClearColorHex(0x000000, world.renderer().getClearAlpha() );
     tQuery.createAmbientLight().addTo(world).color(0x888888);
     tQuery.createDirectionalLight().addTo(world).position(+1,+1,1).color(0x88FF88);
@@ -19,7 +17,7 @@ function initWorld(){
 
 }
 
-function createVueMeter(){
+function buildVueMeter(){
     var nBar = 41;
     var barW = 80/nBar;
     var bars3d = [];
@@ -30,13 +28,28 @@ function createVueMeter(){
             ambient: 0x888888,
             color: 0xffffff
         }));
-        bar3d.addTo(group3d).position((i-nBar/2)*barW, 0, 0);
+        bar3d.addTo(group3d).position(((i-nBar/2)*barW)*2, 0, 0);
         bars3d.push(bar3d);
     }
+    world.loop().hook(function(){
+        if(sound.isPlayable() === false) return;
+        var nBarHalf = Math.ceil(nBar/2);
+        var histograph = sound.makeHistogram(nBarHalf);
+        var scale = sound.amplitude() * 2 + 0.5;
+        object.scale(scale);
+        bars3d.forEach(function(bar3d, barIdx){
+            var histoIdx = barIdx < nBarHalf ? nBarHalf-1-barIdx : barIdx - nBarHalf;
+            var height = histograph[histoIdx] / 256;
+            bar3d.get(0).scale.y = height*3;
+            bar3d.get(0).material.color.setHSL(0.3+height*0.7, 1,1)
+        })
+    })
 }
 
+
+
 function mainRun(){
-    initAudio();
     initWorld();
-    createVueMeter();
+    buildVueMeter();
+
 }
