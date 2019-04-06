@@ -1,12 +1,23 @@
+import {Metronome} from "./metronome.js";
 // init
+
+
 
 var world = tQuery.createWorld().boilerplate().start();
 
-var webaudio = new WebAudio();
-    
-var sound = webaudio.createSound().load('audio/africa.mp3', function(sound){
-        sound.loop(true).play();
-});
+// var webaudio = new WebAudio();
+//
+// var sound = webaudio.createSound().load('audio/africa.mp3', function(sound){
+//         sound.loop(true).play();
+// });
+
+
+var metronome = new Metronome();
+var webAudio = metronome.webAudio;
+
+
+var sound;
+
 var object = tQuery.createTorus().addTo(world);
 
 function initWorld(){
@@ -14,6 +25,8 @@ function initWorld(){
     tQuery.createAmbientLight().addTo(world).color(0x888888);
     tQuery.createDirectionalLight().addTo(world).position(+1,+1,1).color(0x88FF88);
     tQuery.createDirectionalLight().addTo(world).position(-1,-1, 1).color(0x8888FF);
+
+    //window.addEventListener("load", metronome.init );
 
 }
 
@@ -32,7 +45,7 @@ function buildVueMeter(){
         bars3d.push(bar3d);
     }
     world.loop().hook(function(){
-        if(sound.isPlayable() === false) return;
+        //if(sound.isPlayable() === false) return;
         var nBarHalf = Math.ceil(nBar/2);
         var histograph = sound.makeHistogram(nBarHalf);
         var scale = sound.amplitude() * 2 + 0.5;
