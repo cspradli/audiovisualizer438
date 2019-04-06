@@ -19167,7 +19167,7 @@ THREE.ShaderChunk = {
 						"float shadow = 0.0;",
 
 						/*
-						// nested loops breaks shader compiler / validator on some ATI cards when using OpenGL
+						// nested activeLoops breaks shader compiler / validator on some ATI cards when using OpenGL
 						// must enroll loop manually
 
 						"for ( float y = -1.25; y <= 1.25; y += 1.25 )",
