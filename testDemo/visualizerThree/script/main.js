@@ -29,6 +29,8 @@ function audioSetup(){
 }
 
 function sceneSetup(){
+
+    //scene and render setup
     var scene = new Three.Scene();
     var group = new Three.Group();
     var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -37,4 +39,15 @@ function sceneSetup(){
     scene.add(camera);
     var renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
+
+    //geometry
+    var icosahedronGeometry = new THREE.IcosahedronGeometry(10, 4);
+    var lambertMaterial = new THREE.MeshLambertMaterial({
+        color: 0xff00ee,
+        wireframe: true
+    });
+
+    var ball = new THREE.Mesh(icosahedronGeometry, lambertMaterial);
+    ball.position.set(0, 0, 0);
+    group.add(ball);
 }
