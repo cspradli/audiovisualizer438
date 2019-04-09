@@ -35,4 +35,6 @@ function sceneSetup(){
     camera.position.set(0,0,100);
     camera.lookAt(scene.position);
     scene.add(camera);
+    var renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
 }
