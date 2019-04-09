@@ -8,4 +8,10 @@ var visualInit = function(){
         audio.play();
         play();
     }
+
+    audio.src="../sounds";
+    audio.load();
+    audio.play();
+    play();
+
 }
