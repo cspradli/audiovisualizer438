@@ -1,4 +1,4 @@
-var simplexNoise = new simplexNoise();
+var simplexNoise = new SimplexNoise();
 
 var visualInit = function(){
     var audio = document.getElementById("audio");
