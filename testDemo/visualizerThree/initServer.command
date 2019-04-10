@@ -1,3 +1,3 @@
 echo "py server started"
-python -m SimpleHTTPServer
+python3 -m http.server
 echo "py server stopped"
