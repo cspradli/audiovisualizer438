@@ -50,4 +50,10 @@ function sceneSetup(){
     var ball = new THREE.Mesh(icosahedronGeometry, lambertMaterial);
     ball.position.set(0, 0, 0);
     group.add(ball);
+
+    var ambLight = new THREE.AmbientLight(0xaaaaaa);
+    scene.add(ambLight);
+
+    var spotLight = new THREE.SpotLight(0xffffff);
+    spotLight.intensity = 0.8;
 }
