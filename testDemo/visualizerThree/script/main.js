@@ -38,11 +38,27 @@ function play() {
         color: 0xffffff,
         wireframe: true
     });
+    var lambertMaterialTwo = new THREE.MeshLambertMaterial({
+        color: 0x34f9f9,
+        wireframe: true
+    });
+    var lambertMaterialThree = new THREE.MeshLambertMaterial({
+        color: 0xf934bd,
+        wireframe: true
+    });
 
     var ball = new THREE.Mesh(icosahedronGeometry, lambertMaterial);
     ball.position.set(0, 0, 0);
     group.add(ball);
 
+    var ballTwo = new THREE.Mesh(icosahedronGeometry, lambertMaterialTwo);
+    ball.position.set(0, 2, 0);
+    group.add(ballTwo);
+/*
+    var ballThree = new THREE.Mesh(icosahedronGeometry, lambertMaterialThree);
+    ball.position.set(0, 4, 0);
+    group.add(ballThree);
+*/
     var ambientLight = new THREE.AmbientLight(0xaaaaaa);
     scene.add(ambientLight);
 
@@ -82,8 +98,9 @@ function play() {
       var upperAvgFr = upperAvg / upperHalfArray.length;
 
       makeRoughBall(ball, modulate(Math.pow(lowerMaxFr, 0.8), 0, 1, 0, 8), modulate(upperAvgFr, 0, 1, 0, 4));
-
-     // group.rotation.y += 0.005;
+      makeRoughBall(ballTwo, modulate(Math.pow(lowerMaxFr, 0.8), 0, 1, 0, 8), modulate(upperAvgFr, 0, 1, 0, 4));
+   //   makeRoughBall(ballThree, modulate(Math.pow(lowerMaxFr, 0.8), 0, 1, 0, 8), modulate(upperAvgFr, 0, 1, 0, 4));
+      group.rotation.y += 0.005;
       renderer.render(scene, camera);
       requestAnimationFrame(render);
     }
