@@ -54,11 +54,7 @@ function play() {
     var ballTwo = new THREE.Mesh(icosahedronGeometry, lambertMaterialTwo);
     ball.position.set(0, 2, 0);
     group.add(ballTwo);
-/*
-    var ballThree = new THREE.Mesh(icosahedronGeometry, lambertMaterialThree);
-    ball.position.set(0, 4, 0);
-    group.add(ballThree);
-*/
+
     var ambientLight = new THREE.AmbientLight(0xaaaaaa);
     scene.add(ambientLight);
 
@@ -99,7 +95,7 @@ function play() {
 
       makeRoughBall(ball, modulate(Math.pow(lowerMaxFr, 0.8), 0, 1, 0, 8), modulate(upperAvgFr, 0, 1, 0, 4));
       makeRoughBall(ballTwo, modulate(Math.pow(lowerMaxFr, 0.8), 0, 1, 0, 8), modulate(upperAvgFr, 0, 1, 0, 4));
-   //   makeRoughBall(ballThree, modulate(Math.pow(lowerMaxFr, 0.8), 0, 1, 0, 8), modulate(upperAvgFr, 0, 1, 0, 4));
+
       group.rotation.y += 0.005;
       renderer.render(scene, camera);
       requestAnimationFrame(render);
