@@ -5,18 +5,25 @@ var noise = new SimplexNoise();
 var vizInit = function (){
 
     var audio = document.getElementById("audio");
+    var audioTwo = document.getElementById("audioTwo");
     audio.classList.add('active');
+    audioTwo.classList.add('active');
     audio.src = document.getElementById("audio").src;
+    audioTwo.src = document.getElementById("audioTwo").src;
+    audioTwo.load();
     audio.load();
     audio.play();
+    audioTwo.play();
     play();
 
   
 function play() {
     var context = new AudioContext();
     var src = context.createMediaElementSource(audio);
+    var srcTwo = context.createMediaElementSource(audioTwo);
     var analyser = context.createAnalyser();
     src.connect(analyser);
+    srcTwo.connect(analyser);
     analyser.connect(context.destination);
     analyser.fftSize = 512;
     var bufferLength = analyser.frequencyBinCount;
