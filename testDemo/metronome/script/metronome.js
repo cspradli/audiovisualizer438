@@ -1,7 +1,10 @@
 export function Metronome(){
 
     //these variables are accessible in an instantiated Metronome()
-    this.listener = new THREE.AudioListener();
+    this.ctx = new AudioContext();
+    this.listener = new THREE.AudioListener(this.ctx);
+    console.log(this.listener);
+    console.log(this.ctx);
     this.loops = [];
     this.audioFiles = [
         './audio/drums.mp3',
