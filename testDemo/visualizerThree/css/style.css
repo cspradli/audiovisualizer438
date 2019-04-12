@@ -1,6 +1,6 @@
 :root{
-    --bgColor : rgb(71, 71, 71);
-    --bgColorLight : rgb(155, 155, 155);
+    --bgColor : rgb(0, 0, 0);
+    --bgColorLight : rgb(0, 0, 0);
     --textColor : hsla(242, 86%, 88%, 1);
     --textColorDark : hsla(242, 36%, 0%, 1);
     --paperColor: rgb(184, 184, 184);
