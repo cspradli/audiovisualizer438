@@ -61,7 +61,7 @@ function play() {
     spotLight.castShadow = true;
     scene.add(spotLight);
 
-    var orbitControls = new THREE.OrbitControls(camera);
+    //var orbitControls = new THREE.OrbitControls(camera);
     //orbitControls.autoRotate = true;
     
     scene.add(group);
