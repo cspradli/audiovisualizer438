@@ -27,6 +27,20 @@ export function Metronome(){
     var timerWorker = null;
 
 
+    // runs all of the initialization functions in the necessary order. consider moving this function to constructor?
+    this.init = async function(){
+        return new Promise(function(resolve,reject){
+            setTimeout(function(){
+                preloadFiles()
+                    .then(startWorker)
+                    .then(function(){
+                        // loops['./audio/drums.mp3'].active = true;
+                        timerWorker.postMessage("start");
+                        resolve();
+                    })
+            })
+        })
+    };
 
     // goes through everything in the audioFiles[] arr and calls loadAudio.
     var preloadFiles = async function(){
@@ -94,21 +108,6 @@ export function Metronome(){
         });
     };
 
-    // runs all of the initialization functions in the necessary order. consider moving this function to constructor?
-    this.init = async function(){
-        return new Promise(function(resolve,reject){
-            setTimeout(function(){
-                preloadFiles()
-                    .then(startWorker)
-                    .then(function(){
-                        // loops['./audio/drums.mp3'].active = true;
-                        timerWorker.postMessage("start");
-                        resolve();
-                    })
-            })
-        })
-    };
-
     // ran by scheduler after the loops are scheduled. counts to 4, then resets, keeps track of the time of next measure.
     var nextMeasure = function() {
         console.log(currentMeasure);
@@ -149,4 +148,6 @@ export function Metronome(){
             nextMeasure();
         }
     }
+
+    this.init();
 }

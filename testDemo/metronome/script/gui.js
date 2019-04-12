@@ -1,10 +1,14 @@
-import * as metro from "./metronome.js";
+//import * as metro from "./metronome.js";
 
-export function GUI(){
+export function GUI(metro){
+    this.metronome = metro;
+
     window.addEventListener( 'click', onMouseClick, false );
     window.addEventListener( 'mousemove', onMouseMove, false );
     const scene = new THREE.Scene();
     const renderer = new THREE.WebGLRenderer({
+        alpha: true,
+        antialias: true,
         canvas: document.querySelector(".ui")
     });
     const canvas = renderer.domElement;
@@ -22,7 +26,7 @@ export function GUI(){
     var cubes = new THREE.Group();
     var activeCubes = {};
 
-    var metronome = new metro.Metronome();
+
 
     var size = 20;
     var divisions = 10;
@@ -34,7 +38,7 @@ export function GUI(){
     function onMouseClick(){
         console.log('click');
         var intersect = raycaster.intersectObjects(cubes.children, true)[0].object;
-        metronome.loops[activeCubes[intersect.name].i].active = activeCubes[intersect.name].active = !activeCubes[intersect.name].active;
+        this.metronome.loops[activeCubes[intersect.name].i].active = activeCubes[intersect.name].active = !activeCubes[intersect.name].active;
         console.log(intersect);
         console.log(activeCubes);
 
@@ -47,7 +51,7 @@ export function GUI(){
 
     function createCubes(){
         console.log('creating cubes');
-        metronome.loops.forEach(function(loop,i){
+        this.metronome.loops.forEach(function(loop,i){
             var mat = new THREE.MeshBasicMaterial({color: '#FFFFFF'});
             var cube = new THREE.Mesh(geom,mat);
             cube.name = loop.name;
@@ -61,8 +65,8 @@ export function GUI(){
         cubes.translateY(-6);
     }
     function init() {
-
-        metronome.init().then(createCubes);
+        //metronome.init().then(createCubes);
+        createCubes();
     }
 
 
