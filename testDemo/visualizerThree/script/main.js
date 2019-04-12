@@ -35,24 +35,20 @@ function play() {
 
     var icosahedronGeometry = new THREE.IcosahedronGeometry(10, 4);
     var lambertMaterial = new THREE.MeshLambertMaterial({
-        color: 0xffffff,
+        color: 0xff68e8,
         wireframe: true
     });
     var lambertMaterialTwo = new THREE.MeshLambertMaterial({
         color: 0x34f9f9,
         wireframe: true
     });
-    var lambertMaterialThree = new THREE.MeshLambertMaterial({
-        color: 0xf934bd,
-        wireframe: true
-    });
 
     var ball = new THREE.Mesh(icosahedronGeometry, lambertMaterial);
-    ball.position.set(0, 0, 0);
+    ball.position.set(-2, 0, 0);
     group.add(ball);
 
     var ballTwo = new THREE.Mesh(icosahedronGeometry, lambertMaterialTwo);
-    ball.position.set(0, 2, 0);
+    ball.position.set(2, 0, 0);
     group.add(ballTwo);
 
     var ambientLight = new THREE.AmbientLight(0xaaaaaa);
