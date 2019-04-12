@@ -1,10 +1,18 @@
 export function Metronome(){
-    var parent = this;
+
+    //these variables are accessible in an instantiated Metronome()
     this.listener = new THREE.AudioListener();
     this.loops = [];
+    this.audioFiles = [
+        './audio/drums.mp3',
+        './audio/hats.mp3'
+    ];
+
+    //these are private
+    var parent = this; //used to call instance vars within the context of a function
     var audioLoader = new THREE.AudioLoader();
 
-
+    //time tracking vars
     var currentMeasure = 0;
     var tempo = 92.13;
     var lookAhead = 25.0;
@@ -15,12 +23,19 @@ export function Metronome(){
 
     var timerWorker = null;
 
-    this.audioFiles = [
-        './audio/drums.mp3',
-        './audio/hats.mp3'
-    ];
 
 
+    // goes through everything in the audioFiles[] arr and calls loadAudio.
+    var preloadFiles = async function(){
+        console.log('loading files');
+        var promises = [];
+        for(var i in parent.audioFiles){
+            promises.push(loadAudio(parent.audioFiles[i]));
+        }
+        return Promise.all(promises);
+    };
+
+    // this method preloads the audio files so that when they are played it is already loaded. called by preloadFiles()
     var loadAudio = async function(file){
         return new Promise(function(resolve, reject){
             setTimeout(function(){
@@ -51,25 +66,22 @@ export function Metronome(){
         });
     };
 
-    var preloadFiles = async function(){
-        console.log('loading files');
-        var promises = [];
-        for(var i in parent.audioFiles){
-            promises.push(loadAudio(parent.audioFiles[i]));
-        }
-        return Promise.all(promises);
-    };
-
+    // starts the worker, sends first tick message
     var startWorker = async function(){
         return new Promise(function(resolve, reject){
             setTimeout(function(){
                 console.log('starting worker');
+
                 timerWorker = new Worker("./script/worker.js");
+
+                //event hook for 'tick'
                 timerWorker.onmessage = function(e) {
                     if(e.data === "tick"){
                         scheduler();
                     } else console.log("message: " + e.data);
                 };
+
+                //send first tick
                 timerWorker.postMessage(
                     {
                         "interval": 50
@@ -79,6 +91,7 @@ export function Metronome(){
         });
     };
 
+    // runs all of the initialization functions in the necessary order. consider moving this function to constructor?
     this.init = async function(){
         return new Promise(function(resolve,reject){
             setTimeout(function(){
@@ -93,6 +106,7 @@ export function Metronome(){
         })
     };
 
+    // ran by scheduler after the loops are scheduled. counts to 4, then resets, keeps track of the time of next measure.
     var nextMeasure = function() {
         console.log(currentMeasure);
         secondsPerBeat = 60.0/tempo;
@@ -108,6 +122,7 @@ export function Metronome(){
         }
     };
 
+    // adds active loops to a list, playing as a loop, schedules them to be played at the beginning of the next measure. stops ones that are marked inactive
     var scheduleLoops = function(time) {
         for(var key in parent.loops){
             if(!parent.loops[key].audio.isPlaying && parent.loops[key].active){
@@ -122,6 +137,8 @@ export function Metronome(){
         }
     };
 
+
+    //called every time the worker gets a 'tick' message
     var scheduler = function() {
         while( nextMeasureTime < parent.listener.context.currentTime + scheduleAheadTime){
             scheduleLoops(nextMeasureTime);
