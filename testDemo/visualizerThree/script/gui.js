@@ -131,7 +131,7 @@ var vizInit = function (){
 
 window.onload = vizInit();
 
-document.body.addEventListener('touchend', function (ev) { context.resume(); });
+//document.body.addEventListener('touchend', function (ev) { context.resume(); });
 
 //some helper functions here
 function fractionate(val, minVal, maxVal) {
