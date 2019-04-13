@@ -1,13 +1,6 @@
-export function Visualizer(ctx){
-    var context = ctx;
-
-    //var src = context.createMediaElementSource(audio);
-    var analyser = context.createAnalyser();
-    //src.connect(analyser);
-    analyser.connect(context.destination);
-    analyser.fftSize = 512;
-    var bufferLength = analyser.frequencyBinCount;
-    var dataArray = new Uint8Array(bufferLength);
+export function Visualizer(){
+    let parent = this;
+    var noise = new SimplexNoise();
 
     //here comes the webgl
     var scene = new THREE.Scene();
@@ -17,14 +10,8 @@ export function Visualizer(ctx){
     camera.lookAt(scene.position);
     scene.add(camera);
 
-    var renderer = new THREE.WebGLRenderer({
-        alpha: true,
-        antialias: true,
-        canvas: document.querySelector(".vis")
-    });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
-    var icosahedronGeometry = new THREE.IcosahedronGeometry(10, 4);
+    //add objects
+    var icosahedronGeometry = new THREE.IcosahedronGeometry(10, 1);
     var lambertMaterial = new THREE.MeshLambertMaterial({
         color: 0xffffff,
         wireframe: true
@@ -61,34 +48,74 @@ export function Visualizer(ctx){
 
     scene.add(group);
 
+    //audio stuff
+
+    //var src = context.createMediaElementSource(audio);
+    // var bufferLength;
+    // var dataArray;
+    //src.connect(analyser);
+    //analyser.connect(context.destination);
+    //analyser.fftSize = 512;
+
+
+
+
+    var renderer = new THREE.WebGLRenderer({
+        alpha: true,
+        antialias: true,
+        canvas: document.querySelector(".vis")
+    });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    var analyser;
+    var metronome;
+    var bufferLength;
+    var dataArray;
+
+    this.init = async function(metro){
+        return new Promise(function(resolve,reject){
+           setTimeout(function(){
+               console.log('visualizer init');
+               metronome = metro;
+               analyser = metronome.audioEngine.analyserList[1];
+               bufferLength = analyser.frequencyBinCount;
+               dataArray = new Uint8Array(bufferLength);
+               resolve();
+           },2000);
+
+        });
+    };
+
     //document.getElementById('out').appendChild(renderer.domElement);
 
     window.addEventListener('resize', onWindowResize, false);
 
-    function render() {
-        analyser.getByteFrequencyData(dataArray);
-
-        var lowerHalfArray = dataArray.slice(0, (dataArray.length/2) - 1);
-        var upperHalfArray = dataArray.slice((dataArray.length/2) - 1, dataArray.length - 1);
-
-        var overallAvg = avg(dataArray);
-        var lowerMax = max(lowerHalfArray);
-        var lowerAvg = avg(lowerHalfArray);
-        var upperMax = max(upperHalfArray);
-        var upperAvg = avg(upperHalfArray);
-
-        var lowerMaxFr = lowerMax / lowerHalfArray.length;
-        var lowerAvgFr = lowerAvg / lowerHalfArray.length;
-        var upperMaxFr = upperMax / upperHalfArray.length;
-        var upperAvgFr = upperAvg / upperHalfArray.length;
-
-        makeRoughBall(ball, modulate(Math.pow(lowerMaxFr, 0.8), 0, 1, 0, 8), modulate(upperAvgFr, 0, 1, 0, 4));
-        makeRoughBall(ballTwo, modulate(Math.pow(lowerMaxFr, 0.8), 0, 1, 0, 8), modulate(upperAvgFr, 0, 1, 0, 4));
-
-        group.rotation.y += 0.005;
-        renderer.render(scene, camera);
+    function render(){
         requestAnimationFrame(render);
-    }
+
+        if(analyser){
+            dataArray = analyser.getFrequencyData();
+
+            var lowerHalfArray = dataArray.slice(0, (dataArray.length/2) - 1);
+            var upperHalfArray = dataArray.slice((dataArray.length/2) - 1, dataArray.length - 1);
+
+            //var overallAvg = avg(dataArray);
+            var lowerMax = max(lowerHalfArray);
+            //var lowerAvg = avg(lowerHalfArray);
+            //var upperMax = max(upperHalfArray);
+            var upperAvg = avg(upperHalfArray);
+
+            var lowerMaxFr = lowerMax / lowerHalfArray.length;
+            //var lowerAvgFr = lowerAvg / lowerHalfArray.length;
+            //var upperMaxFr = upperMax / upperHalfArray.length;
+            var upperAvgFr = upperAvg / upperHalfArray.length;
+
+            makeRoughBall(ball, modulate(Math.pow(lowerMaxFr, 0.8), 0, 1, 0, 8), modulate(upperAvgFr, 0, 1, 0, 4));
+            makeRoughBall(ballTwo, modulate(Math.pow(lowerMaxFr, 0.8), 0, 1, 0, 8), modulate(upperAvgFr, 0, 1, 0, 4));
+            group.rotation.y += 0.005;
+        }
+        renderer.render(scene, camera);
+    };
 
     function onWindowResize() {
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -103,8 +130,8 @@ export function Visualizer(ctx){
             var time = window.performance.now();
             vertex.normalize();
             var rf = 0.00001;
-            //var distance = (offset + bassFr ) + noise.noise3D(vertex.x + time *rf*7, vertex.y +  time*rf*8, vertex.z + time*rf*9) * amp * treFr;
-            //vertex.multiplyScalar(distance);
+            var distance = (offset + bassFr ) + noise.noise3D(vertex.x + time *rf*7, vertex.y +  time*rf*8, vertex.z + time*rf*9) * amp * treFr;
+            vertex.multiplyScalar(distance);
         });
         mesh.geometry.verticesNeedUpdate = true;
         mesh.geometry.normalsNeedUpdate = true;
@@ -113,7 +140,6 @@ export function Visualizer(ctx){
     }
 
     render();
-
 }
 
 //some helper functions here
