@@ -13,9 +13,7 @@ export function Metronome(){
     var secondsPerBeat = 0.0;
     var measureTime = 0.0;
     var nextMeasureTime = 0.0;
-
     var timerWorker = null;
-
 
     // runs all of the initialization functions in the necessary order. consider moving this function to constructor?
     this.init = async function(){
@@ -32,7 +30,7 @@ export function Metronome(){
     };
 
     // starts the worker, sends first tick message
-    var startWorker = async function(){
+    async function startWorker(){
         return new Promise(function(resolve, reject){
             setTimeout(function(){
                 console.log('starting worker');
@@ -54,10 +52,10 @@ export function Metronome(){
                 resolve();
             },1000);
         });
-    };
+    }
 
     // ran by scheduler after the loops are scheduled. counts to 4, then resets, keeps track of the time of next measure.
-    var nextMeasure = function() {
+    function nextMeasure() {
         console.log(currentMeasure);
         secondsPerBeat = 60.0/tempo;
         measureTime = 4* secondsPerBeat;
@@ -67,13 +65,13 @@ export function Metronome(){
         if(currentMeasure === 4) {
             currentMeasure = 0;
         }
-    };
+    }
 
     //called every time the worker gets a 'tick' message
-    var scheduler = function() {
-        while( nextMeasureTime < parent.audioEngine.listener.context.currentTime + scheduleAheadTime){
+    function scheduler() {
+        while( nextMeasureTime < parent.audioEngine.ctx.currentTime + scheduleAheadTime){
             parent.audioEngine.scheduleLoops(nextMeasureTime);
             nextMeasure();
         }
-    };
+    }
 }

@@ -42,23 +42,7 @@ export function Visualizer(){
     spotLight.lookAt(ball);
     spotLight.castShadow = true;
     scene.add(spotLight);
-
-    //var orbitControls = new THREE.OrbitControls(camera);
-    //orbitControls.autoRotate = true;
-
     scene.add(group);
-
-    //audio stuff
-
-    //var src = context.createMediaElementSource(audio);
-    // var bufferLength;
-    // var dataArray;
-    //src.connect(analyser);
-    //analyser.connect(context.destination);
-    //analyser.fftSize = 512;
-
-
-
 
     var renderer = new THREE.WebGLRenderer({
         alpha: true,
@@ -77,7 +61,7 @@ export function Visualizer(){
            setTimeout(function(){
                console.log('visualizer init');
                metronome = metro;
-               analyser = metronome.audioEngine.analyserList[1];
+               analyser = metronome.audioEngine.analyser;
                bufferLength = analyser.frequencyBinCount;
                dataArray = new Uint8Array(bufferLength);
                resolve();
@@ -94,7 +78,8 @@ export function Visualizer(){
         requestAnimationFrame(render);
 
         if(analyser){
-            dataArray = analyser.getFrequencyData();
+            analyser.getByteFrequencyData(dataArray);
+            //console.log(dataArray);
 
             var lowerHalfArray = dataArray.slice(0, (dataArray.length/2) - 1);
             var upperHalfArray = dataArray.slice((dataArray.length/2) - 1, dataArray.length - 1);
