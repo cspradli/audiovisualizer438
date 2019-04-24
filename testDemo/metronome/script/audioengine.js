@@ -28,31 +28,28 @@ export function AudioEngine(){
     // this method preloads the audio files so that when they are played it is already loaded. called by preloadFiles()
     async function loadAudio(file){
         return new Promise(function(resolve, reject){
-            setTimeout(function(){
-                var audio;
-                //start loading the file
-                audioLoader.load(file,
-                    function(buffer){
-                        audio = new Loop(parent.ctx, buffer);
+            var audio;
+            //start loading the file
+            audioLoader.load(file,
+                function(buffer){
+                    audio = new Loop(parent.ctx, buffer);
 
-                        console.log('loaded file: ' + file);
-                        //push audio object to loops list in Metronome()
-                        parent.loops.push({
-                            name: file,
-                            audio: audio,
-                            active: false
-                        });
-                        resolve(); //this successfully exits the promise, goes to .then() or main execution
-                    },
-                    function(xhr){
-                        console.log('loading: '+file+' '+(xhr.loaded/xhr.total)*100+'%');
-                    },
-                    function(err){
-                        console.log("failed to load file: " + file);
-                        console.log(err);
+                    console.log('loaded file: ' + file);
+                    //push audio object to loops list in Metronome()
+                    parent.loops.push({
+                        name: file,
+                        audio: audio,
+                        active: false
                     });
-            },2000);
-
+                    resolve(); //this successfully exits the promise, goes to .then() or main execution
+                },
+                function(xhr){
+                    console.log('loading: '+file+' '+(xhr.loaded/xhr.total)*100+'%');
+                },
+                function(err){
+                    console.log("failed to load file: " + file);
+                    console.log(err);
+                });
         });
     }
 
@@ -71,9 +68,7 @@ export function AudioEngine(){
 
     this.init = async function(){
         return new Promise(function(resolve,reject){
-            setTimeout(function(){
-                preloadFiles().then(resolve);
-            }, 5000)
+            preloadFiles().then(resolve);
         });
     }
 }

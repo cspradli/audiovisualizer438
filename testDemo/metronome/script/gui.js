@@ -94,10 +94,8 @@ export function GUI(metro){
     this.init = async function() {
         //metronome.init().then(createCubes);
         return new Promise(function(resolve,reject){
-            setTimeout(function(){
-                createCubes();
-                resolve();
-            },5000);
+            createCubes();
+            resolve();
         });
 
     };

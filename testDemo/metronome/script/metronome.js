@@ -1,7 +1,7 @@
 import {AudioEngine} from "./audioengine.js";
 
-export function Metronome(){
-    this.audioEngine = new AudioEngine();
+export function Metronome(ae){
+    this.audioEngine = ae;
     //these are private
     var parent = this; //used to call instance vars within the context of a function
 
@@ -18,39 +18,35 @@ export function Metronome(){
     // runs all of the initialization functions in the necessary order. consider moving this function to constructor?
     this.init = async function(){
         return new Promise(function(resolve,reject){
-            setTimeout(function(){
-                parent.audioEngine.init()
-                    .then(startWorker)
-                    .then(function(){
-                        timerWorker.postMessage("start");
-                        resolve();
-                    })
-            },1000);
+            startWorker().then(function(){
+                timerWorker.postMessage("start");
+                resolve();
+            })
         })
     };
 
     // starts the worker, sends first tick message
     async function startWorker(){
         return new Promise(function(resolve, reject){
+            console.log('starting worker');
+
+            timerWorker = new Worker("./script/worker.js");
+
+            //event hook for 'tick'
+            timerWorker.onmessage = function(e) {
+                if(e.data === "tick"){
+                    scheduler();
+                } else console.log("message: " + e.data);
+            };
+
+            //send first tick
             setTimeout(function(){
-                console.log('starting worker');
-
-                timerWorker = new Worker("./script/worker.js");
-
-                //event hook for 'tick'
-                timerWorker.onmessage = function(e) {
-                    if(e.data === "tick"){
-                        scheduler();
-                    } else console.log("message: " + e.data);
-                };
-
-                //send first tick
                 timerWorker.postMessage(
                     {
                         "interval": 50
                     });
                 resolve();
-            },1000);
+            },200)
         });
     }
 

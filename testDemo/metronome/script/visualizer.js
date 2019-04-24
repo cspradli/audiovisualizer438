@@ -58,14 +58,12 @@ export function Visualizer(){
 
     this.init = async function(metro){
         return new Promise(function(resolve,reject){
-           setTimeout(function(){
-               console.log('visualizer init');
-               metronome = metro;
-               analyser = metronome.audioEngine.analyser;
-               bufferLength = analyser.frequencyBinCount;
-               dataArray = new Uint8Array(bufferLength);
-               resolve();
-           },2000);
+            console.log('visualizer init');
+            metronome = metro;
+            analyser = metronome.audioEngine.analyser;
+            bufferLength = analyser.frequencyBinCount;
+            dataArray = new Uint8Array(bufferLength);
+            resolve();
 
         });
     };
