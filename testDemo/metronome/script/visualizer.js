@@ -20,10 +20,6 @@ export function Visualizer(){
         color: 0x34f9f9,
         wireframe: true
     });
-    var lambertMaterialThree = new THREE.MeshLambertMaterial({
-        color: 0xf934bd,
-        wireframe: true
-    });
 
     var ball = new THREE.Mesh(icosahedronGeometry, lambertMaterial);
     ball.position.set(0, 0, 0);
@@ -82,15 +78,10 @@ export function Visualizer(){
             var lowerHalfArray = dataArray.slice(0, (dataArray.length/2) - 1);
             var upperHalfArray = dataArray.slice((dataArray.length/2) - 1, dataArray.length - 1);
 
-            //var overallAvg = avg(dataArray);
             var lowerMax = max(lowerHalfArray);
-            //var lowerAvg = avg(lowerHalfArray);
-            //var upperMax = max(upperHalfArray);
             var upperAvg = avg(upperHalfArray);
 
             var lowerMaxFr = lowerMax / lowerHalfArray.length;
-            //var lowerAvgFr = lowerAvg / lowerHalfArray.length;
-            //var upperMaxFr = upperMax / upperHalfArray.length;
             var upperAvgFr = upperAvg / upperHalfArray.length;
 
             makeRoughBall(ball, modulate(Math.pow(lowerMaxFr, 0.8), 0, 1, 0, 8), modulate(upperAvgFr, 0, 1, 0, 4));
@@ -121,7 +112,6 @@ export function Visualizer(){
         mesh.geometry.computeVertexNormals();
         mesh.geometry.computeFaceNormals();
     }
-
     render();
 }
 
