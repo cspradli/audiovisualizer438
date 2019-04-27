@@ -4,10 +4,7 @@ export function GUI(metro){
     var textureLoader = new THREE.TextureLoader;
     this.metronome = metro;
     var spriteRoot = './img/';
-    var spriteList = [
-        'drums.png',
-        'place.png'
-    ];
+    var gifRoot = './gif/';
     var spriteObj = [
         {
             name: 'shrek.gif',
@@ -20,6 +17,10 @@ export function GUI(metro){
             locY: 3
         }
     ]
+    var gifList = [
+        'shrek.gif',
+        'shrek.gif'
+    ];
     var parent = this;
 
     //event hooks
@@ -80,14 +81,21 @@ export function GUI(metro){
         var mat = new THREE.SpriteMaterial( {map: texture, color: 0xfffff, fog: true});
     }
 
+    async function loadGifs(){
+        gifList.forEach(function(element){
+            var gifUrl = gifRoot+element;
+            setTimeout(()=>{
+                var myGif = new GIF();
+                myGif.onerror = function(e){
+                    console.log("GIF had trouble loading: " + e); 
+                }
+                myGif.load(gifUrl);
+            }, 0);
+            scene.add(myGif);
+        });
+    }
+
     async function loadSprites(){
-        /*spriteList.forEach(function(element) {
-                var spriteMap = new THREE.TextureLoader().load( spriteRoot+element );
-                var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff } );
-                var sprite = new THREE.Sprite( spriteMaterial );
-                sprite.translateX(-2+(2*2));
-                scene.add( sprite );
-        })*/
         for ( var i = 0; i < spriteObj.length; i++){
             console.log("loading " + spriteObj[i].name);
             var spriteMap = new THREE.TextureLoader().load(spriteRoot + spriteObj[i].name);
@@ -126,6 +134,7 @@ export function GUI(metro){
         return new Promise(function(resolve,reject){
             createCubes();
             loadSprites();
+           // loadGifs();
             resolve();
         });
 
