@@ -28,7 +28,6 @@ export function GUI(metro){
 
     //init three scene, this should maybe change to paper.js in order to better support the svg characters
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color( 0xff0000 );
     const renderer = new THREE.WebGLRenderer({
         alpha: true,
         antialias: true,
