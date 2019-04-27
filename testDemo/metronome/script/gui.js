@@ -1,7 +1,6 @@
 //import * as metro from "./metronome.js";
 
 export function GUI(metro){
-    var textureLoader = new THREE.TextureLoader;
     this.metronome = metro;
     var spriteRoot = './img/';
     var gifRoot = './img/';
@@ -22,7 +21,6 @@ export function GUI(metro){
         'run.png'
     ];
     var parent = this;
-    var clock = new THREE.Clock();
     //event hooks
     window.addEventListener( 'click', onMouseClick, false );
     window.addEventListener( 'mousemove', onMouseMove, false );
@@ -30,6 +28,7 @@ export function GUI(metro){
 
     //init three scene, this should maybe change to paper.js in order to better support the svg characters
     const scene = new THREE.Scene();
+    scene.background = new THREE.Color( 0xff0000 );
     const renderer = new THREE.WebGLRenderer({
         alpha: true,
         antialias: true,
@@ -43,28 +42,18 @@ export function GUI(metro){
     scene.add(camera);
     var raycaster = new THREE.Raycaster();
     var mouseVector = new THREE.Vector3();
-
-    var geom = new THREE.CubeGeometry();
-    var wireframeMat = new THREE.MeshLambertMaterial({
-        color: 0xf934bd,
-        wireframe: true
-    });
-    var cubes = new THREE.Group();
-    var activeCubes = {};
-
+    var spriteGroup = new THREE.Group();
+    var activeSprites = {};
     var size = 5;
     var divisions = 3;
-    //var gridHelper = new THREE.GridHelper(size, divisions);
-    //gridHelper.rotateX(1.5708);
-   // scene.add(gridHelper);
-    scene.add(cubes);
+    scene.add(spriteGroup);
 
     function onMouseClick(){
         console.log('click');
-        var intersect = raycaster.intersectObjects(cubes.children, true)[0].object;
-        parent.metronome.audioEngine.loops[activeCubes[intersect.name].i].active = activeCubes[intersect.name].active = !activeCubes[intersect.name].active;
+        var intersect = raycaster.intersectObjects(spriteGroup.children, true)[0].object;
+        parent.metronome.audioEngine.loops[activeSprites[intersect.name].i].active = activeSprites[intersect.name].active = !activeSprites[intersect.name].active;
         console.log(intersect);
-        console.log(activeCubes);
+        console.log(activeSprites);
     }
     function onMouseMove(e){
         mouseVector.x =  (e.clientX / canvas.width) * 2 - 1;
@@ -76,57 +65,47 @@ export function GUI(metro){
         renderer.setSize(window.innerWidth, window.innerHeight);
     }
 
-    async function loadSprite(spriteTexture){
-        var texture = textureLoader.load(spriteRoot+spriteTexture);
-        var mat = new THREE.SpriteMaterial( {map: texture, color: 0xfffff, fog: true});
-    }
+
+    /**
+     * 
+     * Loading of sprites adn GIFS
+     * 
+     */
     async function loadGifs(){
         gifList.forEach(function(element){
             });
     }
-
     async function loadSprites(){
-        for ( var i = 0; i < spriteObj.length; i++){
+        console.log('creating sprites');
+        parent.metronome.audioEngine.loops.forEach(function(loop,i){
             console.log("loading " + spriteObj[i].name);
             var spriteMap = new THREE.TextureLoader().load(spriteRoot + spriteObj[i].name);
             var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff } );
             var sprite = new THREE.Sprite( spriteMaterial );
-            sprite.position.set(spriteObj[i].locX, spriteObj[i].locY, 0);
-            scene.add( sprite );
-        }
-    }
-
-    function createCubes(){
-        console.log('creating cubes');
-        parent.metronome.audioEngine.loops.forEach(function(loop,i){
-            var mat = new THREE.MeshBasicMaterial({color: '#999999'});
-            var cube = new THREE.Mesh(geom,wireframeMat);
-            cube.name = loop.name;
-            cube.translateX(-2+(i*2));
-            cubes.add(cube);
-            activeCubes[loop.name] = {
+            sprite.name = loop.name;
+            spriteGroup.add(sprite);
+            activeSprites[sprite.name] = {
                 active: false,
                 i: i
-            };
+            }
+            sprite.position.set(spriteObj[i].locX, spriteObj[i].locY, 0);
+            //scene.add( sprite );
         });
-        cubes.translateY(-2.5);
-        console.log('cubes created');
-        console.log(cubes);
+        console.log('sprites created');
+        console.log(spriteGroup);
     }
 
-    function createSprites(){
-        console.log('creating sprites');
-        parent.metronome.loops.forEach(function(loop,i){
-        });
-    }
 
+    /**
+     * 
+     * Initialization and rendering
+     * 
+     */
 
     this.init = async function() {
         //metronome.init().then(createCubes);
         return new Promise(function(resolve,reject){
-            createCubes();
             loadSprites();
-            loadGifs();
             resolve();
         });
 
@@ -136,13 +115,6 @@ export function GUI(metro){
     function render() {
         requestAnimationFrame(render);
         raycaster.setFromCamera(mouseVector, camera);
-        cubes.children.forEach(function(cube){
-            if(activeCubes[cube.name] && activeCubes[cube.name].active){
-                //cube.rotation.x += Math.random() * (0.03 - 0.01) + 0.01;
-                //cube.rotation.y += Math.random() * (0.03 - 0.01) + 0.01;
-            }
-
-        });
         renderer.render(scene, camera);
     }
     render();
