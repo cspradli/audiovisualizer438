@@ -11,7 +11,7 @@ export function Visualizer(){
     scene.add(camera);
 
     //add objects
-    var icosahedronGeometry = new THREE.IcosahedronGeometry(10, 3);
+    var icosahedronGeometry = new THREE.IcosahedronGeometry(10, 4);
     var lambertMaterial = new THREE.MeshLambertMaterial({
         color: 0xffffff,
         wireframe: true

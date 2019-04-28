@@ -27,10 +27,11 @@ export function GUI(metro){
 
     //init three scene, this should maybe change to paper.js in order to better support the svg characters
     const scene = new THREE.Scene();
+    scene.background = new THREE.TextureLoader().load( "./img/shrek.gif" );
     const renderer = new THREE.WebGLRenderer({
-        alpha: true,
         antialias: true,
-        canvas: document.querySelector(".ui")
+        canvas: document.querySelector(".ui"),
+        alpha: true
     });
     const canvas = renderer.domElement;
     renderer.setSize(window.innerWidth, window.innerHeight);
