@@ -1,7 +1,7 @@
 export function GUI(metro){
     this.metronome = metro;
     var spriteRoot = './img/';
-    var gifRoot = './img/';
+    var vidRoot = './img/';
     var spriteObj = [
         {
             name: 'shrek.gif',
@@ -14,9 +14,9 @@ export function GUI(metro){
             locY: 3
         }
     ]
-    var gifList = [
-        'shrek.gif',
-        'shrek.gif'
+    var vidList = [
+        'shrek.mp4',
+        'shrek.mp4'
     ];
     var parent = this;
     var animator;
@@ -70,9 +70,7 @@ export function GUI(metro){
      * 
      */
       
-    async function loadGifs(){
-        for(var i = 0; i < gifList.length; i++){
-        }
+    async function loadVideo(){
     }
     async function loadSprites(){
         console.log('creating sprites');
@@ -105,7 +103,6 @@ export function GUI(metro){
         //metronome.init().then(createCubes);
         return new Promise(function(resolve,reject){
             loadSprites();
-            //loadGifs();
             resolve();
         });
 
