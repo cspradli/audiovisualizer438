@@ -1,5 +1,3 @@
-//import * as metro from "./metronome.js";
-
 export function GUI(metro){
     this.metronome = metro;
     var spriteRoot = './img/';
@@ -17,10 +15,11 @@ export function GUI(metro){
         }
     ]
     var gifList = [
-        'run.png',
-        'run.png'
+        'shrek.gif',
+        'shrek.gif'
     ];
     var parent = this;
+    var animator;
     //event hooks
     window.addEventListener( 'click', onMouseClick, false );
     window.addEventListener( 'mousemove', onMouseMove, false );
@@ -70,9 +69,10 @@ export function GUI(metro){
      * Loading of sprites adn GIFS
      * 
      */
+      
     async function loadGifs(){
-        gifList.forEach(function(element){
-            });
+        for(var i = 0; i < gifList.length; i++){
+        }
     }
     async function loadSprites(){
         console.log('creating sprites');
@@ -105,6 +105,7 @@ export function GUI(metro){
         //metronome.init().then(createCubes);
         return new Promise(function(resolve,reject){
             loadSprites();
+            //loadGifs();
             resolve();
         });
 
