@@ -11,11 +11,13 @@
     </style>
 </head>
 <body>
-
-<canvas class="ui">
-</canvas>
-<canvas class="vis">
-</canvas>
+    <video id="video" loop crossOrigin="anonymous" webkit-playsinline style="display:none">
+        <source src="img/shrek.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+    </video>
+    <canvas class="ui">
+    </canvas>
+    <canvas class="vis">
+    </canvas>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.3.0/simplex-noise.min.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/103/three.js"></script>
 <script type="module" src="script/main.js"></script>
