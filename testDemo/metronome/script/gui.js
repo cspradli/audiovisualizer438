@@ -82,13 +82,13 @@ export function GUI(metro){
         console.log('creating vids');
         parent.metronome.audioEngine.loops.forEach(function(loop, i){
              console.log("loading " + vidList[i].name);
-             var video = document.getElementById( 'video' );
+             var video = document.getElementById( 'video' + i );
 	         video.play();
 	         var texture = new THREE.VideoTexture( video );
              var spriteMaterial = new THREE.SpriteMaterial({map: texture, color: 0xffffff});
              var spriteVid = new THREE.Sprite(spriteMaterial);
              spriteVid.position.set(vidList[i].locX, vidList[i].locY, 0);
-             spriteVid.visible = false;
+             //spriteVid.visible = false;
              scene.add(spriteVid);
         })
     }

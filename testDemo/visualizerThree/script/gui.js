@@ -3,27 +3,31 @@ var noise = new SimplexNoise();
 
 // the main visualiser function
 var vizInit = function (){
-
-    var audio = document.getElementById("audio");
-    var audioTwo = document.getElementById("audioTwo");
+    var min=1; 
+    var max=3;  
+    var random =Math.floor(Math.random() * (+max - +min)) + +min; 
+    console.log("Random Number Generated : " + random ); 
+    console.log("audio" + random); 
+    var audio = document.getElementById("audio" + random);
+    //var audioTwo = document.getElementById("audioTwo");
     audio.classList.add('active');
-    audioTwo.classList.add('active');
-    audio.src = document.getElementById("audio").src;
-    audioTwo.src = document.getElementById("audioTwo").src;
-    audioTwo.load();
+    //audioTwo.classList.add('active');
+    audio.src = document.getElementById("audio" + random).src;
+    //audioTwo.src = document.getElementById("audioTwo").src;
+    //audioTwo.load();
     audio.load();
     audio.play();
-    audioTwo.play();
+    //audioTwo.play();
     play();
 
   
     function play() {
         var context = new AudioContext();
         var src = context.createMediaElementSource(audio);
-        var srcTwo = context.createMediaElementSource(audioTwo);
+        //var srcTwo = context.createMediaElementSource(audioTwo);
         var analyser = context.createAnalyser();
         src.connect(analyser);
-        srcTwo.connect(analyser);
+       // srcTwo.connect(analyser);
         analyser.connect(context.destination);
         analyser.fftSize = 512;
         var bufferLength = analyser.frequencyBinCount;
@@ -99,7 +103,7 @@ var vizInit = function (){
             makeRoughBall(ball, modulate(Math.pow(lowerMaxFr, 0.8), 0, 1, 0, 8), modulate(upperAvgFr, 0, 1, 0, 4));
             makeRoughBall(ballTwo, modulate(Math.pow(lowerMaxFr, 0.8), 0, 1, 0, 8), modulate(upperAvgFr, 0, 1, 0, 4));
 
-            group.rotation.y += 1;
+            group.rotation.y += 0.01;
             renderer.render(scene, camera);
             requestAnimationFrame(render);
         }
