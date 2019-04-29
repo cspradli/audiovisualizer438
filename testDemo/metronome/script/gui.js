@@ -15,8 +15,16 @@ export function GUI(metro){
         }
     ]
     var vidList = [
-        'shrek.mp4',
-        'shrek.mp4'
+        {
+            name: 'shrek.mp4',
+            locX: 0,
+            locY: 3
+        },
+        {
+            name: 'shrek.mp4',
+            locX:  -4,
+            locY: 3
+        }
     ];
     var parent = this;
     var animator;
@@ -27,7 +35,6 @@ export function GUI(metro){
 
     //init three scene, this should maybe change to paper.js in order to better support the svg characters
     const scene = new THREE.Scene();
-    scene.background = new THREE.TextureLoader().load( "./img/shrek.gif" );
     const renderer = new THREE.WebGLRenderer({
         antialias: true,
         canvas: document.querySelector(".ui"),
@@ -72,6 +79,18 @@ export function GUI(metro){
      */
       
     async function loadVideo(){
+        console.log('creating vids');
+        parent.metronome.audioEngine.loops.forEach(function(loop, i){
+             console.log("loading " + vidList[i].name);
+             var video = document.getElementById( 'video' );
+	         video.play();
+	         var texture = new THREE.VideoTexture( video );
+             var spriteMaterial = new THREE.SpriteMaterial({map: texture, color: 0xffffff});
+             var spriteVid = new THREE.Sprite(spriteMaterial);
+             spriteVid.position.set(vidList[i].locX, vidList[i].locY, 0);
+             spriteVid.visible = false;
+             scene.add(spriteVid);
+        })
     }
     async function loadSprites(){
         console.log('creating sprites');
@@ -92,8 +111,12 @@ export function GUI(metro){
         console.log('sprites created');
         console.log(spriteGroup);
     }
-
-
+    /**
+     * Toggle gif texture visibility
+     */
+    function checkClick(){
+        
+    }
     /**
      * 
      * Initialization and rendering
@@ -104,6 +127,7 @@ export function GUI(metro){
         //metronome.init().then(createCubes);
         return new Promise(function(resolve,reject){
             loadSprites();
+            loadVideo();
             resolve();
         });
 
