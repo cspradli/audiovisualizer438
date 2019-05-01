@@ -12,6 +12,9 @@ export function AudioEngine(){
     const audioRoot = './audio/';
     this.audioFiles = [
         'drums.mp3',
+        'hats.mp3',
+        'drums.mp3',
+        'hats.mp3',
         'hats.mp3'
     ];
 

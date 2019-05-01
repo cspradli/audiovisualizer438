@@ -1,30 +1,9 @@
+import {sprites, videos} from './arrays.js'
+
 export function GUI(metro){
+    console.log(sprites);
     this.metronome = metro;
     var spriteRoot = './img/';
-    var spriteObj = [
-        {
-            name: 'shrek.gif',
-            locX: 0,
-            locY: 3
-        },
-        {
-            name: 'place.png',
-            locX: -4,
-            locY: 3
-        }
-    ]
-    var vidList = [
-        {
-            name: 'shrek.mp4',
-            locX: 0,
-            locY: 3
-        },
-        {
-            name: 'shrek.mp4',
-            locX: 0,
-            locY: 3
-        }
-    ]
     var parent = this;
     //event hooks
     window.addEventListener( 'click', onMouseClick, false );
@@ -86,7 +65,7 @@ export function GUI(metro){
              var spriteMaterial = new THREE.SpriteMaterial({map: texture, color: 0xffffff});
              //spriteMaterial.transparent = true;
              var spriteVid = new THREE.Sprite(spriteMaterial);
-             spriteVid.position.set(vidList[i].locX, vidList[i].locY, 0);
+             spriteVid.position.set(videos[i].locX, videos[i].locY, 0);
              //spriteVid.visible = false;
              scene.add(spriteVid);
         })
@@ -94,9 +73,10 @@ export function GUI(metro){
     async function loadSprites(){
         console.log('creating sprites');
         parent.metronome.audioEngine.loops.forEach(function(loop,i){
-            console.log("loading " + spriteObj[i].name);
-            var spriteMap = new THREE.TextureLoader().load(spriteRoot + spriteObj[i].name);
-            var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff} );
+            console.log("loading " + sprites[i].name);
+            var spriteMap = new THREE.TextureLoader().load(spriteRoot + sprites[i].name);
+            var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, transparent: true, color: 0xffffff} );
+            spriteMaterial.transparent = true;
             var sprite = new THREE.Sprite( spriteMaterial );
             sprite.name = loop.name;
             spriteGroup.add(sprite);
@@ -104,7 +84,7 @@ export function GUI(metro){
                 active: false,
                 i: i
             }
-            sprite.position.set(spriteObj[i].locX, spriteObj[i].locY, 0);
+            sprite.position.set(sprites[i].locX, sprites[i].locY, 0);
             //scene.add( sprite );
         });
         console.log('sprites created');

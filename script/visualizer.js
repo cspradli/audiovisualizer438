@@ -11,9 +11,9 @@ export function Visualizer(){
     scene.add(camera);
 
     //add objects
-    var icosahedronGeometry = new THREE.IcosahedronGeometry(10, 4);
+    var icosahedronGeometry = new THREE.IcosahedronGeometry(10, 3);
     var lambertMaterial = new THREE.MeshLambertMaterial({
-        color: 0xffffff,
+        color: 0xfb8eff,
         wireframe: true
     });
     var lambertMaterialTwo = new THREE.MeshLambertMaterial({
@@ -26,7 +26,7 @@ export function Visualizer(){
     group.add(ball);
 
     var ballTwo = new THREE.Mesh(icosahedronGeometry, lambertMaterialTwo);
-    ball.position.set(0, 2, 0);
+    ball.position.set(1, 0, 0);
     group.add(ballTwo);
 
     var ambientLight = new THREE.AmbientLight(0xaaaaaa);
