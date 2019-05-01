@@ -13,6 +13,18 @@ export function GUI(metro){
             locY: 3
         }
     ]
+    var vidList = [
+        {
+            name: 'shrek.mp4',
+            locX: 0,
+            locY: 3
+        },
+        {
+            name: 'shrek.mp4',
+            locX: 0,
+            locY: 3
+        }
+    ]
     var parent = this;
     //event hooks
     window.addEventListener( 'click', onMouseClick, false );
@@ -68,7 +80,7 @@ export function GUI(metro){
     async function loadVideo(){
         console.log('creating vids');
         parent.metronome.audioEngine.loops.forEach(function(loop, i){
-             console.log("loading " + vidList[i].name);
+             //console.log("loading " + vidList[i].name);
              var video = document.getElementById( 'video' + i );
 	         video.play();
 	         var texture = new THREE.VideoTexture( video );
