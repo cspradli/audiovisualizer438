@@ -55,7 +55,7 @@ export function GUI(metro){
 
     /**
      * 
-     * Loading of sprites adn GIFS
+     * Loading of sprites and GIFS
      * 
      */
     /*
