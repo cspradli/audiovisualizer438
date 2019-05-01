@@ -12,7 +12,10 @@ export function GUI(metro){
 
     //init three scene, this should maybe change to paper.js in order to better support the svg characters
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color( 0x000000 );
+    var video = document.getElementById( 'video1' );
+	video.play();
+    var texture = new THREE.VideoTexture( video );
+    scene.background = texture;
     const renderer = new THREE.WebGLRenderer({
         alpha: true,
         antialias: true,
@@ -55,6 +58,7 @@ export function GUI(metro){
      * Loading of sprites adn GIFS
      * 
      */
+    /*
     async function loadVideo(){
         console.log('creating vids');
         parent.metronome.audioEngine.loops.forEach(function(loop, i){
@@ -69,7 +73,7 @@ export function GUI(metro){
              //spriteVid.visible = false;
              scene.add(spriteVid);
         })
-    }
+    }*/
     async function loadSprites(){
         console.log('creating sprites');
         parent.metronome.audioEngine.loops.forEach(function(loop,i){
@@ -106,7 +110,6 @@ export function GUI(metro){
         //metronome.init().then(createCubes);
         return new Promise(function(resolve,reject){
             loadSprites();
-            loadVideo();
             resolve();
         });
 
