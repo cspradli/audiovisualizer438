@@ -1,5 +1,4 @@
 # audiovisualizer438
-Audio visualizer project for NM 438
+Audio Visualizer project for NM 438
 
-
-Any examples should be in the testDemo folder
+Uses Three.JS to make a real-time sound-based object with surrounding instruments
