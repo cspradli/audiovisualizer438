@@ -76,7 +76,6 @@ export function GUI(metro){
      * Loading of sprites adn GIFS
      * 
      */
-      
     async function loadVideo(){
         console.log('creating vids');
         parent.metronome.audioEngine.loops.forEach(function(loop, i){
