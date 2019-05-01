@@ -11,14 +11,14 @@ export function AudioEngine(){
     this.loops = [];
     const audioRoot = './audio/';
     this.audioFiles = [
-        'drums.mp3',
+        'loop1.wav',
         'hats.mp3',
         'drums.mp3',
         'hats.mp3',
         'hats.mp3',
-        'baby.mp3',
-        'baby.mp3',
-        'baby.mp3',
+        'loop1.wav',
+        'loop1.wav',
+        'loop1.wav',
         'drums.mp3',
         'drums.mp3',
         'drums.mp3',

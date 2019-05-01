@@ -14,10 +14,12 @@ export function Visualizer(){
     var icosahedronGeometry = new THREE.IcosahedronGeometry(10, 3);
     var lambertMaterial = new THREE.MeshLambertMaterial({
         color: 0xfb8eff,
+        emmissive: 0x842a2a,
         wireframe: true
     });
     var lambertMaterialTwo = new THREE.MeshLambertMaterial({
         color: 0x34f9f9,
+        emmissive: 0xffffff,
         wireframe: true
     });
 

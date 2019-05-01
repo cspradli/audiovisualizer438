@@ -1,7 +1,6 @@
 import {sprites, videos} from './arrays.js'
 
 export function GUI(metro){
-    console.log(sprites);
     this.metronome = metro;
     var spriteRoot = './img/';
     var parent = this;
@@ -10,8 +9,9 @@ export function GUI(metro){
     window.addEventListener( 'mousemove', onMouseMove, false );
     window.addEventListener('resize', onWindowResize, false);
 
-    //init three scene, this should maybe change to paper.js in order to better support the svg characters
+    //init three scene
     const scene = new THREE.Scene();
+    //video background called from index
     var video = document.getElementById( 'video1' );
 	video.play();
     var texture = new THREE.VideoTexture( video );
@@ -83,6 +83,10 @@ export function GUI(metro){
             spriteMaterial.transparent = true;
             var sprite = new THREE.Sprite( spriteMaterial );
             sprite.name = loop.name;
+            sprite.scale.set(2, 2, 1);
+            if (sprites[i].name === 'shrek.gif'){
+                sprite.scale.set(3, 3, 1);
+            }
             spriteGroup.add(sprite);
             activeSprites[sprite.name] = {
                 active: false,

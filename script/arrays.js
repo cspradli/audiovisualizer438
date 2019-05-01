@@ -1,68 +1,68 @@
 var sprites = [
     {
-        name: 'shrek.gif',
+        name: 'AlienAngel.png',
         locX: 0,
-        locY: 3
+        locY: 2.25
     },
     {
-        name: 'place.png',
+        name: 'DevilDave.png',
         locX: -4,
         locY: 3
     },
     {
-        name: 'oops.png',
-        locX: 1,
+        name: 'HouseMan.png',
+        locX: 2,
         locY: 1
     },
     {
-        name: 'oops.png',
+        name: 'RealPrettyMan.png',
         locX: 5.8,
         locY: -3.1
     },
     {
-        name: 'oops.png',
+        name: 'Spikey.png',
         locX: 5.2,
         locY: -3
     },
     {
-        name: 'shrek.gif',
+        name: 'Wizzrobe.png',
         locX: -1.5,
         locY: -2.25
     },
     {
-        name: 'shrek.gif',
+        name: 'ZenMan.png',
         locX: -1,
         locY: -2.25
     },
     {
         name: 'shrek.gif',
-        locX: -3.20,
-        locY: -2.70
+        locX: 4.5,
+        locY: -1.3
     },
     {
         name: 'shrek.gif',
-        locX: -2.80,
-        locY: -2.90
+        locX: 2.80,
+        locY: -1.2
     },
     {
         name: 'shrek.gif',
-        locX: -2.4,
+        locX: 2,
         locY: -3
     },
     {
         name: 'shrek.gif',
-        locX: -2,
-        locY: -3.4
+        locX: -6.75,
+        locY: 1.2
     },
     {
         name: 'shrek.gif',
-        locX: -1.80,
-        locY: -3.8
+        locX: -6.75,
+        locY: -1.25
     },
     {
         name: 'shrek.gif',
-        locX: -1.10,
-        locY: -3.9
+        locX: -7,
+        locY: 0
     },
 ]
 
