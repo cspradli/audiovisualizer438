@@ -15,7 +15,15 @@ export function AudioEngine(){
         'hats.mp3',
         'drums.mp3',
         'hats.mp3',
-        'hats.mp3'
+        'hats.mp3',
+        'baby.mp3',
+        'baby.mp3',
+        'baby.mp3',
+        'drums.mp3',
+        'drums.mp3',
+        'drums.mp3',
+        'drums.mp3',
+        'drums.mp3'
     ];
 
     // goes through everything in the audioFiles[] arr and calls loadAudio.

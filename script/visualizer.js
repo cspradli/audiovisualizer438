@@ -22,11 +22,11 @@ export function Visualizer(){
     });
 
     var ball = new THREE.Mesh(icosahedronGeometry, lambertMaterial);
-    ball.position.set(0, 0, 0);
+    ball.position.set(0, 8, 0);
     group.add(ball);
 
     var ballTwo = new THREE.Mesh(icosahedronGeometry, lambertMaterialTwo);
-    ball.position.set(1, 0, 0);
+    ballTwo.position.set(1, 8, 0);
     group.add(ballTwo);
 
     var ambientLight = new THREE.AmbientLight(0xaaaaaa);
