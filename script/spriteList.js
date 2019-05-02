@@ -1,4 +1,4 @@
-var spritez = {
+var sprites = {
     'devildave': {
         'img': 'img/sprites/devildave.png',
         'button': null,
@@ -177,4 +177,4 @@ var spritez = {
     }
 };
 
-export {spritez}
+export {sprites}

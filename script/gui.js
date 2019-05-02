@@ -1,5 +1,5 @@
 import {SpriteButton} from "./SpriteButton.js";
-import {spritez} from "./spriteList.js";
+import {sprites} from "./spriteList.js";
 
 export function GUI(metro){
     this.metronome = metro;
@@ -17,6 +17,7 @@ export function GUI(metro){
 	video.play();
     var texture = new THREE.VideoTexture( video );
     scene.background = texture;
+
     const renderer = new THREE.WebGLRenderer({
         alpha: true,
         antialias: true,
@@ -42,7 +43,7 @@ export function GUI(metro){
             console.log('invalid click.')
         }
         if(intersect){
-            parent.metronome.audioEngine.loops[intersect.name].active = spritez[intersect.name].active = !parent.metronome.audioEngine.loops[intersect.name].active;
+            parent.metronome.audioEngine.loops[intersect.name].active = sprites[intersect.name].active = !parent.metronome.audioEngine.loops[intersect.name].active;
         }
     }
 
@@ -58,10 +59,10 @@ export function GUI(metro){
 
     async function createSprites(){
         console.log('creating sprites');
-        for(var key in spritez){
-            var spr = spritez[key];
+        for(var key in sprites){
+            var spr = sprites[key];
             var SB = new SpriteButton(spr.img, spr.x, spr.y, spr.n, spr.time, spr.posX, spr.posY);
-            spritez[key].button = SB;
+            sprites[key].button = SB;
             parent.buttons[key] = SB;
             SB.sprite.name = key;
             spriteGroup.add(SB.sprite);
@@ -76,13 +77,12 @@ export function GUI(metro){
         });
     };
 
-
     async function render() {
         requestAnimationFrame(render);
         raycaster.setFromCamera(mouseVector, camera);
-        for(var key in spritez){
-            if(spritez[key].active){
-                spritez[key].button.update(42);
+        for(var key in sprites){
+            if(sprites[key].active){
+                sprites[key].button.update(42);
             }
         }
         renderer.render(scene, camera);
