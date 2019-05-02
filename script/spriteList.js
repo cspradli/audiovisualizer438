@@ -7,8 +7,8 @@ var sprites = {
         'y': 7,
         'n': 49,
         'time': 84,
-        'posX': 0,
-        'posY': 0
+        'posX': 0.5,
+        'posY': -0.5
     },
     'drum1': {
         'img': 'img/sprites/drum1.png',
@@ -41,7 +41,7 @@ var sprites = {
         'n': 49,
         'time': 230,
         'posX': -3,
-        'posY': 1
+        'posY': 2
     },
     'cactusjoe':{
         'img': 'img/sprites/CactusJoe.png',
@@ -51,7 +51,7 @@ var sprites = {
         'y': 7,
         'n': 49,
         'time': 230,
-        'posX': -2,
+        'posX': -0.7,
         'posY': 0
     },
     'drum2':{
@@ -118,7 +118,7 @@ var sprites = {
         'n': 49,
         'time': 230,
         'posX': -2,
-        'posY': 1
+        'posY': -0.5
     },
     'prettyman':{
         'img': 'img/sprites/prettyman.png',
@@ -128,8 +128,8 @@ var sprites = {
         'y': 7,
         'n': 49,
         'time': 230,
-        'posX': -4,
-        'posY': -4
+        'posX': -4.7,
+        'posY': 0
     },
     'shrek':{
         'img': 'img/sprites/shrek.png',
@@ -139,8 +139,8 @@ var sprites = {
         'y': 7,
         'n': 49,
         'time': 230,
-        'posX': -3,
-        'posY': 1
+        'posX': -3.1,
+        'posY': 0
     },
     'spikey':{
         'img': 'img/sprites/Spikey.png',
@@ -150,8 +150,8 @@ var sprites = {
         'y': 7,
         'n': 49,
         'time': 230,
-        'posX': -6,
-        'posY': 0
+        'posX': -6.5,
+        'posY': -0.7
     },
     'wizzrobe':{
         'img': 'img/sprites/Wizzrobe.png',
@@ -161,8 +161,8 @@ var sprites = {
         'y': 7,
         'n': 49,
         'time': 230,
-        'posX': -4,
-        'posY': 0
+        'posX': -5.5,
+        'posY': 3
     },
     'zenman':{
         'img': 'img/sprites/ZenMan.png',
