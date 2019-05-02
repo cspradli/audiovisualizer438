@@ -2,6 +2,7 @@ import {SpriteButton} from "./SpriteButton.js";
 
 export function GUI(metro){
     this.metronome = metro;
+    this.buttons = {};
     var parent = this;
 
     //event hooks
@@ -36,15 +37,16 @@ export function GUI(metro){
 
     function onMouseClick(){
         console.log('click');
-        var intersect = raycaster.intersectObjects(sprites.children, true)[0].object;
-        //parent.metronome.audioEngine.loops[activeCubes[intersect.name].i].active = activeCubes[intersect.name].active = !activeCubes[intersect.name].active;
+        try{
+            var intersect = raycaster.intersectObjects(sprites.children, true)[0].object;
+        }catch(TypeError){
+            console.log('invalid click.')
+        }
         if(intersect){
             parent.metronome.audioEngine.loops[intersect.name].active = spritez[intersect.name].active = !parent.metronome.audioEngine.loops[intersect.name].active;
-
         }
-
-        console.log(intersect);
     }
+
     function onMouseMove(e){
         mouseVector.x =  (e.clientX / canvas.width) * 2 - 1;
         mouseVector.y = -(e.clientY / canvas.height) * 2 + 1;
@@ -57,44 +59,95 @@ export function GUI(metro){
 
     var spritez = {
         'devildave': {
-            'img': 'img/sprites/devildave.png',
+            'img': 'img/sprites/shrek.png',
             'button': null,
             'active': false,
             'x': 7,
             'y': 7,
             'n': 49,
-            'time': 84
+            'time': 84,
+            'posX': 0,
+            'posY': 0
+        },
+        'drum1': {
+            'img': 'img/sprites/drum1.png',
+            'button': null,
+            'active': false,
+            'x': 7,
+            'y': 7,
+            'n': 49,
+            'time': 250,
+            'posX': 5,
+            'posY': 0
         }
-    }
+        // 'drum2': {
+        //     'img': 'img/sprites/drum2.png',
+        //     'button': null,
+        //     'active': false,
+        //     'x': 7,
+        //     'y': 7,
+        //     'n': 49,
+        //     'time': 84
+        // },
+        // 'drum3': {
+        //     'img': 'img/sprites/drum3.png',
+        //     'button': null,
+        //     'active': false,
+        //     'x': 7,
+        //     'y': 7,
+        //     'n': 49,
+        //     'time': 84
+        // },
+        // 'drum4': {
+        //     'img': 'img/sprites/drum4.png',
+        //     'button': null,
+        //     'active': false,
+        //     'x': 7,
+        //     'y': 7,
+        //     'n': 49,
+        //     'time': 84
+        // },
+        // 'shrek': {
+        //     'img': 'img/sprites/shrek.png',
+        //     'button': null,
+        //     'active': false,
+        //     'x': 7,
+        //     'y': 7,
+        //     'n': 49,
+        //     'time': 84
+        // },
+        // 'spikey': {
+        //     'img': 'img/sprites/spikey.png',
+        //     'button': null,
+        //     'active': false,
+        //     'x': 7,
+        //     'y': 7,
+        //     'n': 49,
+        //     'time': 84
+        // }
+    };
+
+
 
     function createSprites(){
-
         console.log('creating sprites');
 
-
         for(var key in spritez){
-
             var spr = spritez[key];
-            var SB = new SpriteButton(spr.img, spr.x, spr.y, spr.n, spr.time);
+            var SB = new SpriteButton(spr.img, spr.x, spr.y, spr.n, spr.time, spr.posX, spr.posY);
             spritez[key].button = SB;
+            parent.buttons[key] = SB;
             SB.sprite.name = key;
             sprites.add(SB.sprite);
-
         }
-
-        console.log(spritez);
         scene.add(sprites);
-
     }
 
     this.init = async function() {
-        //metronome.init().then(createCubes);
         return new Promise(function(resolve,reject){
             createSprites();
-
             resolve();
         });
-
     };
 
 
@@ -106,7 +159,6 @@ export function GUI(metro){
                 spritez[key].button.update(42);
             }
         }
-
         renderer.render(scene, camera);
     }
     render();
