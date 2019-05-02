@@ -38,10 +38,14 @@ export function GUI(metro){
 
     function onMouseClick(){
         console.log('click');
-        var intersect = raycaster.intersectObjects(spriteGroup.children, true)[0].object;
-        parent.metronome.audioEngine.loops[activeSprites[intersect.name].i].active = activeSprites[intersect.name].active = !activeSprites[intersect.name].active;
-        console.log(intersect);
-        console.log(activeSprites);
+        try{
+            var intersect = raycaster.intersectObjects(sprites.children, true)[0].object;
+        }catch(TypeError){
+            console.log('invalid click.')
+        }
+        if(intersect){
+            parent.metronome.audioEngine.loops[intersect.name].active = spritez[intersect.name].active = !parent.metronome.audioEngine.loops[intersect.name].active;
+        }
     }
     function onMouseMove(e){
         mouseVector.x =  (e.clientX / canvas.width) * 2 - 1;
@@ -134,6 +138,11 @@ export function GUI(metro){
     function render() {
         requestAnimationFrame(render);
         raycaster.setFromCamera(mouseVector, camera);
+        for(var key in spritez){
+            if(spritez[key].active){
+                spritez[key].button.update(42);
+            }
+        }
         renderer.render(scene, camera);
     }
     render();
