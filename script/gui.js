@@ -1,5 +1,5 @@
-import {sprites, videos} from './arrays.js'
-
+import {spritez} from './arrays.js'
+import {SpriteButton} from "./SpriteButton.js";
 export function GUI(metro){
     this.metronome = metro;
     var spriteRoot = './img/';
@@ -29,11 +29,12 @@ export function GUI(metro){
     scene.add(camera);
     var raycaster = new THREE.Raycaster();
     var mouseVector = new THREE.Vector3();
-    var spriteGroup = new THREE.Group();
+    //var spriteGroup = new THREE.Group();
+    var sprites = new THREE.Group();
     var activeSprites = {};
     var size = 5;
     var divisions = 3;
-    scene.add(spriteGroup);
+    //scene.add(spriteGroup);
 
     function onMouseClick(){
         console.log('click');
@@ -101,8 +102,18 @@ export function GUI(metro){
     /**
      * Toggle gif texture visibility
      */
-    function checkClick(){
-        
+    function createSprites(){
+        console.log('creating sprites');
+
+        for(var key in spritez){
+            var spr = spritez[key];
+            var SB = new SpriteButton(spr.img, spr.x, spr.y, spr.n, spr.time, spr.posX, spr.posY);
+            spritez[key].button = SB;
+            parent.buttons[key] = SB;
+            SB.sprite.name = key;
+            sprites.add(SB.sprite);
+        }
+        scene.add(sprites);
     }
     /**
      * 
@@ -113,7 +124,7 @@ export function GUI(metro){
     this.init = async function() {
         //metronome.init().then(createCubes);
         return new Promise(function(resolve,reject){
-            loadSprites();
+            createSprites();
             resolve();
         });
 
