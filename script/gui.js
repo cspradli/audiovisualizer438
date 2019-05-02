@@ -32,12 +32,12 @@ export function GUI(metro){
 
     var raycaster = new THREE.Raycaster();
     var mouseVector = new THREE.Vector3();
-    var sprites = new THREE.Group();
+    var spriteGroup = new THREE.Group();
 
     function onMouseClick(){
         console.log('click');
         try{
-            var intersect = raycaster.intersectObjects(sprites.children, true)[0].object;
+            var intersect = raycaster.intersectObjects(spriteGroup.children, true)[0].object;
         }catch(TypeError){
             console.log('invalid click.')
         }
@@ -64,9 +64,9 @@ export function GUI(metro){
             spritez[key].button = SB;
             parent.buttons[key] = SB;
             SB.sprite.name = key;
-            sprites.add(SB.sprite);
+            spriteGroup.add(SB.sprite);
         }
-        scene.add(sprites);
+        scene.add(spriteGroup);
     }
 
     this.init = async function() {
