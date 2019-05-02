@@ -13,7 +13,21 @@ export function AudioEngine(){
     const audioRoot = './audio/';
     this.audio = {
         'devildave': 'devildave.mp3',
-        'drum1': 'drums1.mp3'
+        'drum1': 'drums1.mp3',
+        'alienangel': 'loops.mp3',
+        'bloodghost': 'loops.mp3',
+        'cactusjoe': 'loops.mp3',
+        'drum2': 'loops.mp3',
+        'drum3': 'loops.mp3',
+        'drum4': 'loops.mp3',
+        'drum5': 'loops.mp3',
+        'drum6': 'loops.mp3',
+        'houseman': 'loops.mp3',
+        'prettyman': 'loops.mp3',
+        'shrek': 'loops.mp3',
+        'spikey': 'loops.mp3',
+        'wizzrobe': 'loops.mp3',
+        'zenman': 'loops.mp3'
     };
 
     // goes through everything in the audioFiles[] arr and calls loadAudio.

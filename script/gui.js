@@ -1,5 +1,6 @@
 import {SpriteButton} from "./SpriteButton.js";
 import {spritez} from "./spriteList.js";
+
 export function GUI(metro){
     this.metronome = metro;
     this.buttons = {};
@@ -10,7 +11,7 @@ export function GUI(metro){
     window.addEventListener( 'mousemove', onMouseMove, false );
     window.addEventListener('resize', onWindowResize, false);
 
-    //init three scene, this should maybe change to paper.js in order to better support the svg characters
+    //scene with video background located in bg folder
     const scene = new THREE.Scene();
     var video = document.getElementById( 'video1' );
 	video.play();
@@ -28,9 +29,9 @@ export function GUI(metro){
     var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.translateZ(10);
     scene.add(camera);
+
     var raycaster = new THREE.Raycaster();
     var mouseVector = new THREE.Vector3();
-
     var sprites = new THREE.Group();
 
     function onMouseClick(){
@@ -55,9 +56,8 @@ export function GUI(metro){
         renderer.setSize(window.innerWidth, window.innerHeight);
     }
 
-    function createSprites(){
+    async function createSprites(){
         console.log('creating sprites');
-
         for(var key in spritez){
             var spr = spritez[key];
             var SB = new SpriteButton(spr.img, spr.x, spr.y, spr.n, spr.time, spr.posX, spr.posY);
@@ -77,7 +77,7 @@ export function GUI(metro){
     };
 
 
-    function render() {
+    async function render() {
         requestAnimationFrame(render);
         raycaster.setFromCamera(mouseVector, camera);
         for(var key in spritez){
