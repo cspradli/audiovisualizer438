@@ -1,17 +1,17 @@
-import {spritez} from './arrays.js'
 import {SpriteButton} from "./SpriteButton.js";
+import {spritez} from "./spriteList";
 export function GUI(metro){
     this.metronome = metro;
-    var spriteRoot = './img/';
+    this.buttons = {};
     var parent = this;
+
     //event hooks
     window.addEventListener( 'click', onMouseClick, false );
     window.addEventListener( 'mousemove', onMouseMove, false );
     window.addEventListener('resize', onWindowResize, false);
 
-    //init three scene
+    //init three scene, this should maybe change to paper.js in order to better support the svg characters
     const scene = new THREE.Scene();
-    //video background called from index
     var video = document.getElementById( 'video1' );
 	video.play();
     var texture = new THREE.VideoTexture( video );
@@ -21,6 +21,7 @@ export function GUI(metro){
         antialias: true,
         canvas: document.querySelector(".ui")
     });
+
     const canvas = renderer.domElement;
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x000000, 0);
@@ -29,12 +30,8 @@ export function GUI(metro){
     scene.add(camera);
     var raycaster = new THREE.Raycaster();
     var mouseVector = new THREE.Vector3();
-    //var spriteGroup = new THREE.Group();
+
     var sprites = new THREE.Group();
-    var activeSprites = {};
-    var size = 5;
-    var divisions = 3;
-    //scene.add(spriteGroup);
 
     function onMouseClick(){
         console.log('click');
@@ -47,6 +44,7 @@ export function GUI(metro){
             parent.metronome.audioEngine.loops[intersect.name].active = spritez[intersect.name].active = !parent.metronome.audioEngine.loops[intersect.name].active;
         }
     }
+
     function onMouseMove(e){
         mouseVector.x =  (e.clientX / canvas.width) * 2 - 1;
         mouseVector.y = -(e.clientY / canvas.height) * 2 + 1;
@@ -57,55 +55,6 @@ export function GUI(metro){
         renderer.setSize(window.innerWidth, window.innerHeight);
     }
 
-
-    /**
-     * 
-     * Loading of sprites and GIFS
-     * 
-     */
-    /*
-    async function loadVideo(){
-        console.log('creating vids');
-        parent.metronome.audioEngine.loops.forEach(function(loop, i){
-             //console.log("loading " + vidList[i].name);
-             var video = document.getElementById( 'video' + i );
-	         video.play();
-	         var texture = new THREE.VideoTexture( video );
-             var spriteMaterial = new THREE.SpriteMaterial({map: texture, color: 0xffffff});
-             //spriteMaterial.transparent = true;
-             var spriteVid = new THREE.Sprite(spriteMaterial);
-             spriteVid.position.set(videos[i].locX, videos[i].locY, 0);
-             //spriteVid.visible = false;
-             scene.add(spriteVid);
-        })
-    }*/
-    async function loadSprites(){
-        console.log('creating sprites');
-        parent.metronome.audioEngine.loops.forEach(function(loop,i){
-            console.log("loading " + sprites[i].name);
-            var spriteMap = new THREE.TextureLoader().load(spriteRoot + sprites[i].name);
-            var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, transparent: true, color: 0xffffff} );
-            spriteMaterial.transparent = true;
-            var sprite = new THREE.Sprite( spriteMaterial );
-            sprite.name = loop.name;
-            sprite.scale.set(2, 2, 1);
-            if (sprites[i].name === 'shrek.gif'){
-                sprite.scale.set(3, 3, 1);
-            }
-            spriteGroup.add(sprite);
-            activeSprites[sprite.name] = {
-                active: false,
-                i: i
-            }
-            sprite.position.set(sprites[i].locX, sprites[i].locY, 0);
-            //scene.add( sprite );
-        });
-        console.log('sprites created');
-        console.log(spriteGroup);
-    }
-    /**
-     * Toggle gif texture visibility
-     */
     function createSprites(){
         console.log('creating sprites');
 
@@ -119,19 +68,12 @@ export function GUI(metro){
         }
         scene.add(sprites);
     }
-    /**
-     * 
-     * Initialization and rendering
-     * 
-     */
 
     this.init = async function() {
-        //metronome.init().then(createCubes);
         return new Promise(function(resolve,reject){
             createSprites();
             resolve();
         });
-
     };
 
 
