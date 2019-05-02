@@ -3,13 +3,11 @@ import {Loop} from "./loop.js";
 export function AudioEngine(){
     const parent = this; //used to call instance vars within the context of a function
     var audioLoader = new THREE.AudioLoader();
-    //this.listener = new THREE.AudioListener();
     this.ctx = new AudioContext();
     this.analyser = this.ctx.createAnalyser();
     this.analyser.connect(this.ctx.destination);
     this.loops = {};
 
-    // this.loops = [];
     const audioRoot = './audio/';
     this.audio = {
         'devildave': 'devildave.mp3',

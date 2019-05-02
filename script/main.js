@@ -17,14 +17,6 @@ async function init(){
             visualizer.init(metronome).then(metronome.init);
             resolve();
         });
-
-        // metronome.init().then(function(){
-        //     visualizer = new Visualizer(metronome.ctx);
-        //     gui = new GUI(metronome);
-        //     gui.init().then(function(){
-        //         visualizer.init(metronome).then(resolve);
-        //     });
-        // });
     });
 
 }
