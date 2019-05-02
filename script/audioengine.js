@@ -10,9 +10,9 @@ export function AudioEngine(){
     this.loops = {};
 
     // this.loops = [];
-    const audioRoot = '../audio/';
+    const audioRoot = './audio/';
     this.audio = {
-        'devildave': 'devildave.wav',
+        'devildave': 'devildave.mp3',
         'drum1': 'drums1.mp3'
     };
 

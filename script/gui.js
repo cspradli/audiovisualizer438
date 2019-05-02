@@ -1,5 +1,5 @@
 import {SpriteButton} from "./SpriteButton.js";
-import {spritez} from "./spriteList";
+import {spritez} from "./spriteList.js";
 export function GUI(metro){
     this.metronome = metro;
     this.buttons = {};
