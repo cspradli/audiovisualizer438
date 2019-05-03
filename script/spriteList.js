@@ -22,7 +22,7 @@ var sprites = {
         'posY': -0.7
     },
     'alienangel':{
-        'img': 'img/sprites/AlienAngel.png',
+        'img': 'img/sprites/alien.png',
         'button': null,
         'active': false,
         'x': 7,
@@ -44,7 +44,7 @@ var sprites = {
         'posY': 2
     },
     'cactusjoe':{
-        'img': 'img/sprites/CactusJoe.png',
+        'img': 'img/sprites/cactus.png',
         'button': null,
         'active': false,
         'x': 7,
@@ -110,7 +110,7 @@ var sprites = {
         'posY': -1
     },
     'houseman':{
-        'img': 'img/sprites/houseMan.png',
+        'img': 'img/sprites/haus.png',
         'button': null,
         'active': false,
         'x': 7,
@@ -131,7 +131,7 @@ var sprites = {
         'posX': -4.7,
         'posY': 0
     },
-    'shrek':{
+    'shrek':{ //this one
         'img': 'img/sprites/shrek.png',
         'button': null,
         'active': false,
@@ -142,8 +142,8 @@ var sprites = {
         'posX': -3.1,
         'posY': 0
     },
-    'spikey':{
-        'img': 'img/sprites/Spikey.png',
+    'spikey':{ //this one
+        'img': 'img/sprites/spiky.png',
         'button': null,
         'active': false,
         'x': 7,
@@ -153,8 +153,8 @@ var sprites = {
         'posX': -6.5,
         'posY': -0.7
     },
-    'wizzrobe':{
-        'img': 'img/sprites/Wizzrobe.png',
+    'wizzrobe':{ //this one
+        'img': 'img/sprites/wizz.png',
         'button': null,
         'active': false,
         'x': 7,
@@ -164,8 +164,8 @@ var sprites = {
         'posX': -5.5,
         'posY': 3
     },
-    'zenman':{
-        'img': 'img/sprites/ZenMan.png',
+    'zenman':{ //this one
+        'img': 'img/sprites/zen.png',
         'button': null,
         'active': false,
         'x': 7,
