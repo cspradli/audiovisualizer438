@@ -12,7 +12,7 @@ export function AudioEngine(){
     this.audio = {
         'devildave': 'loops/devildave.wav',
         'drum1': 'loops/drum1.wav',
-        'alienangel': 'devildave.mp3',
+        'alienangel': 'loops/alien.wav',
         'bloodghost': 'loops/ghost.wav',
         'cactusjoe': 'loops/cactus.wav',
         'drum2': 'loops/drum2.wav',
@@ -22,9 +22,9 @@ export function AudioEngine(){
         'drum6': 'loops/drum6.wav',
         'houseman': 'loops/haus.wav',
         'prettyman': 'loops/prettyman.wav',
-        'shrek': 'bass.mp3',
+        'shrek': 'loops/shrek.wav',
         'spikey': 'loops/spiky.wav',
-        'wizzrobe': 'more.mp3',
+        'wizzrobe': 'loops/temp.wav',
         'zenman': 'loops/zen.wav',
         'astroblob': 'loops/astroblob.wav'
     };
@@ -52,11 +52,11 @@ export function AudioEngine(){
                     resolve(); //this successfully exits the promise, goes to .then() or main execution
                 },
                 function(xhr){
-                    console.log('loading: '+file+' '+(xhr.loaded/xhr.total)*100+'%');
+                    //console.log('loading: '+file+' '+(xhr.loaded/xhr.total)*100+'%');
                 },
                 function(err){
-                    console.log("failed to load file: " + file);
-                    console.log(err);
+                    //console.log("failed to load file: " + file);
+                    //console.log(err);
                 });
         });
     }

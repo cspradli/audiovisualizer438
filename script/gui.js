@@ -78,7 +78,7 @@ export function GUI(metro){
             SB.sprite.name = key;
             if(key === 'shrek' || key === 'wizzrobe' || key === 'houseman'){
                 SB.sprite.scale.set(2.5, 2.5, 1);
-                console.log(key + "scale sized up");
+                //console.log(key + "scale sized up");
             }
             spriteGroup.add(SB.sprite);
         }
