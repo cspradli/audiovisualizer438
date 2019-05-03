@@ -65,6 +65,7 @@ export function GUI(metro){
             sprites[key].button = SB;
             parent.buttons[key] = SB;
             SB.sprite.name = key;
+            SB.sprite.scale.set(1.5, 1.5, 1);
             spriteGroup.add(SB.sprite);
         }
         scene.add(spriteGroup);

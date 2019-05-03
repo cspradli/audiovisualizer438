@@ -18,7 +18,7 @@ var sprites = {
         'y': 7,
         'n': 49,
         'time': 250,
-        'posX': 3.2,
+        'posX': 3.2, //this one
         'posY': -0.7
     },
     'alienangel':{
@@ -63,7 +63,7 @@ var sprites = {
         'n': 49,
         'time': 230,
         'posX': 4.5,
-        'posY': -1
+        'posY': -1 //not this one
     },
     'drum3':{
         'img': 'img/sprites/drum3.png',
@@ -74,7 +74,7 @@ var sprites = {
         'n': 49,
         'time': 230,
         'posX': 2,
-        'posY': -0.5
+        'posY': -0.5 //not this one
     },
     'drum4':{
         'img': 'img/sprites/drum4.png',
@@ -106,7 +106,7 @@ var sprites = {
         'y': 7,
         'n': 49,
         'time': 230,
-        'posX': 5.8,
+        'posX': 5.8, //not this one
         'posY': -1
     },
     'houseman':{
