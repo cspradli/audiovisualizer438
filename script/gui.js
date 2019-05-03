@@ -64,8 +64,12 @@ export function GUI(metro){
             var SB = new SpriteButton(spr.img, spr.x, spr.y, spr.n, spr.time, spr.posX, spr.posY);
             sprites[key].button = SB;
             parent.buttons[key] = SB;
+            //console.log(key);
             SB.sprite.name = key;
-            SB.sprite.scale.set(1.5, 1.5, 1);
+            if(key === 'shrek' || key === 'wizzrobe' || key === 'houseman'){
+                SB.sprite.scale.set(2.5, 2.5, 1);
+                console.log(key + "scale sized up");
+            }
             spriteGroup.add(SB.sprite);
         }
         scene.add(spriteGroup);

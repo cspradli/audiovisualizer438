@@ -40,8 +40,8 @@ var sprites = {
         'y': 7,
         'n': 49,
         'time': 230,
-        'posX': -3,
-        'posY': 2
+        'posX': 5.8,
+        'posY': 2.8
     },
     'cactusjoe':{
         'img': 'img/sprites/cactus.png',
