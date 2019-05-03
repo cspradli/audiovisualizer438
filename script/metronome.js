@@ -7,7 +7,8 @@ export function Metronome(ae){
 
     //time tracking vars
     var currentMeasure = 0;
-    var tempo = 92.13;
+    //var tempo = 92.13;
+    var tempo = 110.00;
     var lookAhead = 25.0; // not used yet, may need to add.
     var scheduleAheadTime = 0.1;
     var secondsPerBeat = 0.0;
