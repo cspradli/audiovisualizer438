@@ -12,7 +12,7 @@ export function AudioEngine(){
     this.audio = {
         'devildave': 'loops/devildave.wav',
         'drum1': 'loops/drum1.wav',
-        'alienangel': 'loops.mp3',
+        'alienangel': 'devildave.mp3',
         'bloodghost': 'loops/ghost.wav',
         'cactusjoe': 'loops/cactus.wav',
         'drum2': 'loops/drum2.wav',
