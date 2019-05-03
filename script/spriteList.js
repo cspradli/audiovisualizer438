@@ -6,7 +6,7 @@ var sprites = {
         'x': 7,
         'y': 7,
         'n': 49,
-        'time': 84,
+        'time': 280,
         'posX': 0.5,
         'posY': -0.5
     },
@@ -17,7 +17,7 @@ var sprites = {
         'x': 7,
         'y': 7,
         'n': 49,
-        'time': 250,
+        'time': 280,
         'posX': 3.2, //this one
         'posY': -0.7
     },
@@ -28,7 +28,7 @@ var sprites = {
         'x': 7,
         'y': 7,
         'n': 49,
-        'time': 230,
+        'time': 280,
         'posX': -3,
         'posY': 4
     },
@@ -39,7 +39,7 @@ var sprites = {
         'x': 7,
         'y': 7,
         'n': 49,
-        'time': 230,
+        'time': 280,
         'posX': 5.8,
         'posY': 2.8
     },
@@ -50,7 +50,7 @@ var sprites = {
         'x': 7,
         'y': 7,
         'n': 49,
-        'time': 230,
+        'time': 280,
         'posX': -0.7,
         'posY': 0
     },
@@ -61,7 +61,7 @@ var sprites = {
         'x': 7,
         'y': 7,
         'n': 49,
-        'time': 230,
+        'time': 280,
         'posX': 4.5,
         'posY': -1 //not this one
     },
@@ -72,7 +72,7 @@ var sprites = {
         'x': 7,
         'y': 7,
         'n': 49,
-        'time': 230,
+        'time': 280,
         'posX': 2,
         'posY': -0.5 //not this one
     },
@@ -83,7 +83,7 @@ var sprites = {
         'x': 7,
         'y': 7,
         'n': 49,
-        'time': 230,
+        'time': 280,
         'posX': 3,
         'posY': 1.3
     },
@@ -94,7 +94,7 @@ var sprites = {
         'x': 7,
         'y': 7,
         'n': 49,
-        'time': 230,
+        'time': 280,
         'posX': 4.3,
         'posY': 1.2
     },
@@ -105,7 +105,7 @@ var sprites = {
         'x': 7,
         'y': 7,
         'n': 49,
-        'time': 230,
+        'time': 280,
         'posX': 5.8, //not this one
         'posY': -1
     },
@@ -116,7 +116,7 @@ var sprites = {
         'x': 7,
         'y': 7,
         'n': 49,
-        'time': 230,
+        'time': 280,
         'posX': -2,
         'posY': -0.5
     },
@@ -127,7 +127,7 @@ var sprites = {
         'x': 7,
         'y': 7,
         'n': 49,
-        'time': 230,
+        'time': 280,
         'posX': -5.1,
         'posY': -0.1
     },
@@ -138,7 +138,7 @@ var sprites = {
         'x': 7,
         'y': 7,
         'n': 49,
-        'time': 230,
+        'time': 280,
         'posX': -3.6,
         'posY': 0.1
     },
@@ -149,7 +149,7 @@ var sprites = {
         'x': 7,
         'y': 7,
         'n': 49,
-        'time': 230,
+        'time': 280,
         'posX': -6.5,
         'posY': -0.7
     },
@@ -160,7 +160,7 @@ var sprites = {
         'x': 7,
         'y': 7,
         'n': 49,
-        'time': 230,
+        'time': 280,
         'posX': -5.7,
         'posY': 3
     },
@@ -171,7 +171,7 @@ var sprites = {
         'x': 7,
         'y': 7,
         'n': 49,
-        'time': 230,
+        'time': 280,
         'posX': 3,
         'posY': 4
     },
@@ -182,7 +182,7 @@ var sprites = {
         'x': 7,
         'y': 7,
         'n': 49,
-        'time': 230,
+        'time': 280,
         'posX': -4.5,
         'posY': 5
     }

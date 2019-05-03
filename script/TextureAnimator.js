@@ -1,7 +1,5 @@
 export function TextureAnimator(texture, tilesHoriz, tilesVert, numTiles, tileDispDuration)
 {
-    // note: texture passed by reference, will be updated by the update function.
-
     this.tilesHorizontal = tilesHoriz;
     this.tilesVertical = tilesVert;
     // how many images does this spritesheet contain?
