@@ -1,3 +1,8 @@
+/**
+ * Authors: Devin Sipal and Caleb Spradlin
+ * 438 Audio Visualizer Project
+ */
+
 import {SpriteButton} from "./SpriteButton.js";
 import {sprites} from "./spriteList.js";
 

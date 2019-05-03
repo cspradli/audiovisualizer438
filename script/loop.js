@@ -1,3 +1,8 @@
+/**
+ * Authors: Devin Sipal and Caleb Spradlin
+ * 438 Audio Visualizer Project
+ */
+
 export function Loop(context, buffer){
     this.context = context;
     this.buffer = buffer;

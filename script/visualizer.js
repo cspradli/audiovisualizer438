@@ -1,3 +1,8 @@
+/**
+ * Authors: Devin Sipal and Caleb Spradlin
+ * 438 Audio Visualizer Project
+ */
+
 export function Visualizer(){
     let parent = this;
     var noise = new SimplexNoise();

@@ -1,3 +1,8 @@
+/**
+ * Authors: Devin Sipal and Caleb Spradlin
+ * 438 Audio Visualizer Project
+ */
+
 var timerID = null;
 var interval = 20;
 

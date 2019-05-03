@@ -1,3 +1,7 @@
+/**
+ * Authors: Devin Sipal and Caleb Spradlin
+ * 438 Audio Visualizer Project
+ */
 
 import {Visualizer} from "./visualizer.js";
 import {GUI} from "./gui.js";

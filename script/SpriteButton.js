@@ -1,3 +1,8 @@
+/**
+ * Authors: Devin Sipal and Caleb Spradlin
+ * 438 Audio Visualizer Project
+ */
+
 import {TextureAnimator} from "./TextureAnimator.js";
 
 export function SpriteButton(texture, ix, iy, n, time, posX = 0, posY = 0){

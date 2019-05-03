@@ -1,3 +1,8 @@
+/**
+ * Authors: Devin Sipal and Caleb Spradlin
+ * 438 Audio Visualizer Project
+ */
+
 import {AudioEngine} from "./audioengine.js";
 
 export function Metronome(ae){

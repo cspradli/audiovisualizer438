@@ -1,3 +1,8 @@
+/**
+ * Authors: Devin Sipal and Caleb Spradlin
+ * 438 Audio Visualizer Project
+ */
+
 export function TextureAnimator(texture, tilesHoriz, tilesVert, numTiles, tileDispDuration)
 {
     this.tilesHorizontal = tilesHoriz;
