@@ -10,22 +10,22 @@ export function AudioEngine(){
 
     const audioRoot = './audio/';
     this.audio = {
-        'devildave': 'devildave.mp3',
-        'drum1': 'drums1.mp3',
+        'devildave': 'loops/devildave.wav',
+        'drum1': 'loops/drum1.wav',
         'alienangel': 'loops.mp3',
-        'bloodghost': 'loops.mp3',
-        'cactusjoe': 'loops.mp3',
-        'drum2': 'loops.mp3',
-        'drum3': 'loops.mp3',
-        'drum4': 'loops.mp3',
-        'drum5': 'loops.mp3',
-        'drum6': 'loops.mp3',
-        'houseman': 'loops.mp3',
-        'prettyman': 'loops.mp3',
-        'shrek': 'loops.mp3',
-        'spikey': 'loops.mp3',
-        'wizzrobe': 'loops.mp3',
-        'zenman': 'loops.mp3'
+        'bloodghost': 'loops/ghost.wav',
+        'cactusjoe': 'loops/cactus.wav',
+        'drum2': 'loops/drum2.wav',
+        'drum3': 'loops/drum3.wav',
+        'drum4': 'loops/drum4.wav',
+        'drum5': 'loops/drum5.wav',
+        'drum6': 'loops/drum6.wav',
+        'houseman': 'loops/haus.wav',
+        'prettyman': 'loops/prettyman.wav',
+        'shrek': 'bass.mp3',
+        'spikey': 'loops/spiky.wav',
+        'wizzrobe': 'more.mp3',
+        'zenman': 'loops/zen.wav'
     };
 
     // goes through everything in the audioFiles[] arr and calls loadAudio.
