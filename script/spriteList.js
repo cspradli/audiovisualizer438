@@ -128,8 +128,8 @@ var sprites = {
         'y': 7,
         'n': 49,
         'time': 230,
-        'posX': -4.7,
-        'posY': 0
+        'posX': -5.1,
+        'posY': -0.1
     },
     'shrek':{ //this one
         'img': 'img/sprites/shrek.png',
@@ -139,8 +139,8 @@ var sprites = {
         'y': 7,
         'n': 49,
         'time': 230,
-        'posX': -3.1,
-        'posY': 0
+        'posX': -3.6,
+        'posY': 0.1
     },
     'spikey':{ //this one
         'img': 'img/sprites/spiky.png',
@@ -161,7 +161,7 @@ var sprites = {
         'y': 7,
         'n': 49,
         'time': 230,
-        'posX': -5.5,
+        'posX': -5.7,
         'posY': 3
     },
     'zenman':{ //this one
@@ -174,6 +174,17 @@ var sprites = {
         'time': 230,
         'posX': 3,
         'posY': 4
+    },
+    'astroblob':{ //this one
+        'img': 'img/sprites/astroblob.png',
+        'button': null,
+        'active': false,
+        'x': 7,
+        'y': 7,
+        'n': 49,
+        'time': 230,
+        'posX': -4.5,
+        'posY': 5
     }
 };
 

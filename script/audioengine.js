@@ -25,7 +25,8 @@ export function AudioEngine(){
         'shrek': 'bass.mp3',
         'spikey': 'loops/spiky.wav',
         'wizzrobe': 'more.mp3',
-        'zenman': 'loops/zen.wav'
+        'zenman': 'loops/zen.wav',
+        'astroblob': 'loops/astroblob.wav'
     };
 
     // goes through everything in the audioFiles[] arr and calls loadAudio.

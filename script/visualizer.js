@@ -26,7 +26,6 @@ export function Visualizer(){
     var ball = new THREE.Mesh(icosahedronGeometry, lambertMaterial);
     ball.position.set(0, 8, 0);
     group.add(ball);
-
     var ballTwo = new THREE.Mesh(icosahedronGeometry, lambertMaterialTwo);
     ballTwo.position.set(1, 8, 0);
     group.add(ballTwo);
@@ -61,6 +60,7 @@ export function Visualizer(){
             analyser = metronome.audioEngine.analyser;
             bufferLength = analyser.frequencyBinCount;
             dataArray = new Uint8Array(bufferLength);
+            //loadObj();  
             resolve();
 
         });
