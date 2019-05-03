@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+    <title>Dance Haus</title>
+
+    <style>
+        canvas{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <video id="video1" loop crossOrigin="anonymous" webkit-playsinline style="display:none">
+        <source src="bg/discoUp.webm" type="video/webm">
+    </video>
+    <canvas class="ui" id="canvasOne">
+    </canvas>
+    <canvas class="vis" id="canvasTwo">
+    </canvas>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.3.0/simplex-noise.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/103/three.js"></script>
+<script type="module" src="script/main.js"></script>
+
+<script>
+</script>
+</body>
